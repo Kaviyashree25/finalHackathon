@@ -1,0 +1,17 @@
+spring:
+  data:
+    mongodb:
+      #      database: ${MONGO_DATABASE}
+      #      port: ${MONGO_PORT}
+      #      host: ${MONGO_HOST}
+      database: userDB
+      port: 27017
+      host: localhost
+  application:
+    name: post-service
+server:
+  port: 9200
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka

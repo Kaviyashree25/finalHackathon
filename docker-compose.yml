@@ -1,0 +1,105 @@
+# Dockerfile has been added in all micro-services, you need to dockerize all micro-services and add docker-compose.yml file
+version: '3'
+
+services:
+  userauthservice:
+    image: userauthservice
+    build: UserAuthentication-Service/
+    restart: always
+    ports:
+      - 9100:9100
+    depends_on:
+      - mysqlDatabase
+    network_mode: host
+
+  bankproductservice:
+    image: bankproductservice
+    build: BankProductService/
+    restart: always
+    ports:
+      - 9200:9200
+    depends_on:
+      - mongoDatabase
+    network_mode: host
+
+  circleservice:
+    image: circleservice
+    build: CircleService/
+    restart: always
+    ports:
+      - 9300:9300
+    depends_on:
+      - mongoDatabase
+    network_mode: host
+
+  postservice:
+    image: postservice
+    build: PostService/
+    restart: always
+    ports:
+      - 9400:9400
+    depends_on:
+      - mongoDatabase
+    network_mode: host
+
+  productservice:
+    image: productservice
+    build: ProductService/
+    restart: always
+    ports:
+      - 9500:9500
+    depends_on:
+      - mongoDatabase
+    network_mode: host
+
+    userservice:
+      image: userservice
+      build: UserService/
+      restart: always
+      ports:
+        - 9600:9600
+      depends_on:
+        - mongoDatabase
+      network_mode: host
+
+  zuulapigateway:
+    image: zuulapigateway
+    build: netflix-zuul-api-gateway-server/
+    restart: always
+    ports:
+      - 8765:8765
+    depends_on:
+      - eurekaserver
+    network_mode: host
+
+  eurekaserver:
+    image: eurekaserver
+    build: netflix-eureka-naming-server/
+    restart: always
+    ports:
+      - 8761:8761
+    network_mode: host
+
+#  socialbankapp:
+#    image: socialbankapp
+#    build: social-bank-app/
+#    ports:
+#      - 8080:8080
+#    network_mode: host
+
+  mysqlDatabase:
+    image: mysql:5.5
+    ports:
+      - 3306:3306
+    network_mode: host
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: approot
+      MYSQL_PASSWORD: apppass
+      MYSQL_DATABASE: socialbank
+
+  mongoDatabase:
+    image: mongo:3.2-jessie
+    ports:
+      - 27017:27017
+    network_mode: host

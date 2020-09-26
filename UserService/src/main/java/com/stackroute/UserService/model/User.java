@@ -4,7 +4,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
-
 @Document
 public class User {
     @Id
@@ -14,18 +13,20 @@ public class User {
     private String userRole;
     private List<Circle> circles;
     private List<Product> products;
+    private List<Circle> circleRequests;
     private List<Post> posts;
 
     public User() {
     }
 
-    public User(String userId, String userName, String dob, String userRole, List<Circle> circles, List<Product> products, List<Post> posts) {
+    public User(String userId, String userName, String dob, String userRole, List<Circle> circles, List<Product> products, List<Circle> circleRequests, List<Post> posts) {
         this.userId = userId;
         this.userName = userName;
         this.dob = dob;
         this.userRole = userRole;
         this.circles = circles;
         this.products = products;
+        this.circleRequests = circleRequests;
         this.posts = posts;
     }
 
@@ -77,6 +78,14 @@ public class User {
         this.products = products;
     }
 
+    public List<Circle> getCircleRequests() {
+        return circleRequests;
+    }
+
+    public void setCircleRequests(List<Circle> circleRequests) {
+        this.circleRequests = circleRequests;
+    }
+
     public List<Post> getPosts() {
         return posts;
     }
@@ -94,7 +103,9 @@ public class User {
                 ", userRole='" + userRole + '\'' +
                 ", circles=" + circles +
                 ", products=" + products +
+                ", circleRequests=" + circleRequests +
                 ", posts=" + posts +
                 '}';
     }
 }
+

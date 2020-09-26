@@ -3,6 +3,7 @@ package com.stackroute.CircleService.service;
 import com.stackroute.CircleService.exception.CircleAlreadyExistsException;
 import com.stackroute.CircleService.exception.CircleNotFoundException;
 import com.stackroute.CircleService.exception.NotAuthorizedException;
+import com.stackroute.CircleService.exception.UserNotFoundException;
 import com.stackroute.CircleService.model.Circle;
 import com.stackroute.CircleService.model.Post;
 import com.stackroute.CircleService.model.User;
@@ -196,6 +197,46 @@ public class CircleServiceImpl implements CircleService{
         {
             //No circle present for the user
             return null;
+        }
+    }
+
+    @Override
+    public Boolean sendCircleRequest(Circle circle, String userId) throws UserNotFoundException {
+        Optional<User> userOptional = circleRepository.findById(userId);
+        if(userOptional.isPresent()){
+            userOptional.get().getCircleRequests().add(circle);
+            this.circleRepository.deleteById(userId);
+            this.circleRepository.insert(userOptional.get());
+            return true;
+        }else{
+            throw new UserNotFoundException("User not found");
+        }
+    }
+
+    @Override
+    public Boolean acceptRequest(Circle circle, String userId) throws UserNotFoundException, CircleNotFoundException {
+        this.joinCircle(circle,userId);
+        Optional<User> userOptional=this.circleRepository.findById(userId);
+        if(userOptional.isPresent()){
+            userOptional.get().getCircleRequests().remove(circle);
+            this.circleRepository.deleteById(userId);
+            this.circleRepository.insert(userOptional.get());
+            return true;
+        }else{
+            throw new UserNotFoundException("User not found");
+        }
+    }
+
+    @Override
+    public Boolean rejectRequest(Circle circle, String userId) throws UserNotFoundException {
+        Optional<User> userOptional=this.circleRepository.findById(userId);
+        if(userOptional.isPresent()){
+            userOptional.get().getCircleRequests().remove(circle);
+            this.circleRepository.deleteById(userId);
+            this.circleRepository.insert(userOptional.get());
+            return true;
+        }else{
+            throw new UserNotFoundException("User not found");
         }
     }
 }

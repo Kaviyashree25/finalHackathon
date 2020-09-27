@@ -1,0 +1,22 @@
+ #logo{
+    width: 10vw;
+    padding:0 2%; 
+ }
+ .fill-remaining-space {
+     /* This fills the remaining space, by using flexbox. 
+        Every toolbar row uses a flexbox row layout. */
+     flex: 1 1 auto;
+   }
+   #title{
+      background-color: #151a33;
+      font-size: x-large;
+      color: rgb(236, 190, 65);;
+   }
+   #bar3{
+       color: white;
+   }
+   a{
+      padding:2em;
+      text-decoration: none;
+      color: white;
+   }

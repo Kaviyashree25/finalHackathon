@@ -8,15 +8,18 @@ import { SettingsSectionComponent } from './settings-section/settings-section.co
 import { ProductSectionComponent } from './product-section/product-section.component';
 import { RouterModule } from '@angular/router';
 import { HeaderFooterModule } from '../header-footer/header-footer.module';
+import { NavigationComponent } from './navigation/navigation.component';
+import { MatGridListModule } from '@angular/material/grid-list'
 
 
 
 @NgModule({
-  declarations: [DashboardComponent, PostSectionComponent, CircleSectionComponent, ProfileSectionComponent, SettingsSectionComponent, ProductSectionComponent],
+  declarations: [DashboardComponent, PostSectionComponent, CircleSectionComponent, ProfileSectionComponent, SettingsSectionComponent, ProductSectionComponent, NavigationComponent],
   imports: [
     CommonModule,
     RouterModule,
-    HeaderFooterModule
+    HeaderFooterModule,
+    MatGridListModule
   ],
   exports: [
     DashboardComponent,

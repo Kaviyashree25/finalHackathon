@@ -1,2 +1,9 @@
 <app-header></app-header>
-<router-outlet></router-outlet>
+<mat-grid-list cols="10" rowHeight="200px">
+    <mat-grid-tile [colspan]= "2">
+        <app-navigation></app-navigation>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]= "8" [rowspan]="8">
+        <router-outlet></router-outlet>
+    </mat-grid-tile>
+  </mat-grid-list>

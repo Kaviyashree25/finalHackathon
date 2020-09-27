@@ -2,7 +2,6 @@
     position: fixed;
     left: 0;
     bottom: 0;
-    color: white;
 }
 .fill-remaining-space {
     /* This fills the remaining space, by using flexbox. 
@@ -12,6 +11,7 @@
   #head{
     height: auto;
     background-color:black; 
+    color: white;
     align-items: center;
     font-size: 0.9em;
     width: 100vw;

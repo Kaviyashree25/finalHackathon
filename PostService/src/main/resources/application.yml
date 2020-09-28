@@ -4,7 +4,7 @@ spring:
       #      database: ${MONGO_DATABASE}
       #      port: ${MONGO_PORT}
       #      host: ${MONGO_HOST}
-      database: userDB
+      database: postDb
       port: 27017
       host: localhost
   application:

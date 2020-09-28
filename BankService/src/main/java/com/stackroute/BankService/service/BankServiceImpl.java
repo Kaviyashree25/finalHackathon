@@ -3,7 +3,6 @@ package com.stackroute.BankService.service;
 import com.stackroute.BankService.exception.ProductAlreadyExistsException;
 import com.stackroute.BankService.exception.ProductNotFoundException;
 import com.stackroute.BankService.model.Product;
-import com.stackroute.BankService.model.User;
 import com.stackroute.BankService.repository.BankRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,13 +32,13 @@ public class BankServiceImpl implements BankService {
     }
 
     @Override
-    public Boolean deleteProduct(String productId) throws ProductNotFoundException {
+    public Product deleteProduct(String productId) throws ProductNotFoundException {
         Optional<Product> optionalProduct = this.bankRepository.findById(productId);
         if (optionalProduct.isEmpty()) {
             throw new ProductNotFoundException(NOT_FOUND_MESSAGE);
         }
         this.bankRepository.deleteById(productId);
-        return true;
+        return optionalProduct.get();
     }
 
     @Override

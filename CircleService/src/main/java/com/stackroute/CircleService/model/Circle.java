@@ -1,27 +1,26 @@
 package com.stackroute.CircleService.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.List;
-
 public class Circle {
     private String circleId;
     private String circleName;
     private String circleDescription;
-    private List<User> users;
-    private List<Post> posts;
     private String createdBy;
+
+    public Circle(String userId, String circleId, String circleName, String circleDescription, String createdBy) {
+        this.circleId = circleId;
+        this.circleName = circleName;
+        this.circleDescription = circleDescription;
+        this.createdBy = createdBy;
+    }
 
     public Circle() {
     }
 
-    public Circle(String circleId, String circleName, String circleDescription, List<User> users, List<Post> posts, String createdBy) {
-        this.circleId = circleId;
-        this.circleName = circleName;
-        this.circleDescription = circleDescription;
-        this.users = users;
-        this.posts = posts;
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -49,39 +48,13 @@ public class Circle {
         this.circleDescription = circleDescription;
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-
-    public List<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
     @Override
     public String toString() {
         return "Circle{" +
-                "circleId='" + circleId + '\'' +
+                ", circleId='" + circleId + '\'' +
                 ", circleName='" + circleName + '\'' +
                 ", circleDescription='" + circleDescription + '\'' +
-                ", users=" + users +
-                ", posts=" + posts +
-                ", createdBy=" + createdBy +
+                ", createdBy='" + createdBy + '\'' +
                 '}';
     }
 }

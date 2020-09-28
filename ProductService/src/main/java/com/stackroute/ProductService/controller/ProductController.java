@@ -4,6 +4,7 @@ package com.stackroute.ProductService.controller;
 import com.stackroute.ProductService.exception.ProductAlreadyExistsException;
 import com.stackroute.ProductService.exception.ProductDoesNotExistsException;
 import com.stackroute.ProductService.model.Product;
+import com.stackroute.ProductService.model.ProductUser;
 import com.stackroute.ProductService.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,7 +44,7 @@ public class ProductController {
     @DeleteMapping("/{productId}/{userId}")
     public ResponseEntity<?> unfollowProduct(@PathVariable("productId") String productId, @PathVariable("userId") String userId) {
         try {
-            Boolean unfollowProduct = this.productService.unfollowProduct(productId, userId);
+            Product unfollowProduct = this.productService.unfollowProduct(productId, userId);
             responseEntity = new ResponseEntity<>(unfollowProduct, HttpStatus.OK);
         } catch (ProductDoesNotExistsException e) {
             responseEntity = new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
@@ -62,6 +63,16 @@ public class ProductController {
         } catch (ProductDoesNotExistsException e) {
             responseEntity = new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
         } catch (Exception e) {
+            responseEntity = new ResponseEntity("Internal Server Error, Try again in some time", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
+    }
+    @GetMapping("/user")
+    public ResponseEntity<?> getAllUserForProduct(@RequestParam String productId) {
+        try {
+            List<ProductUser> userList = this.productService.getAllUserByProductId(productId);
+            responseEntity = new ResponseEntity<>(userList, HttpStatus.OK);
+        }catch (Exception e) {
             responseEntity = new ResponseEntity("Internal Server Error, Try again in some time", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return responseEntity;

@@ -9,9 +9,10 @@ import com.stackroute.PostService.model.Post;
 import java.util.List;
 
 public interface PostService {
-    public Post createPost(Post post) throws PostAlreadyExistsException, NoSuchUserExistsException;
-    public boolean deletePost(String userId, String postId) throws PostDoesNotExistsException;
+    public Post createPost(String userId, Post post) throws PostAlreadyExistsException, NoSuchUserExistsException;
+    public Post deletePost(String userId, String postId) throws PostDoesNotExistsException;
     public Post updatePost(Post post, String userId, String postId) throws NoSuchUserExistsException, PostDoesNotExistsException;
     public List<Post> getAllPosts();
-//    public List<Post> getAllPostsWithSpecificCircleId(String circleId) throws CircleDoesNotExistsException;
+    public List<Post> getAllPostsByUser(String userId) throws NoSuchUserExistsException;
+    public List<Post> getAllPostsInCircle(String circleId) throws NoSuchUserExistsException;
 }

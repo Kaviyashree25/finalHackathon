@@ -20,22 +20,6 @@ public class BankController {
     public BankController(BankService bankService) {
         this.bankService = bankService;
     }
-
-    //List<User>
-    @GetMapping("/users/{id}")
-    public ResponseEntity<?> getUsersByProduct(@PathVariable("id") String productId) {
-        ResponseEntity<?> responseEntity;
-        try {
-            Product savedProduct = this.bankService.getProductByProductId(productId);
-            responseEntity = new ResponseEntity<>(savedProduct.getUsers(), HttpStatus.OK);
-        } catch (ProductNotFoundException e) {
-            responseEntity = new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
-        } catch (Exception e) {
-            responseEntity = new ResponseEntity<>("Some Internal Error Try after sometime", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return responseEntity;
-    }
-
     //Product
     @GetMapping("/{id}")
     public ResponseEntity<?> getProductByProductId(@PathVariable("id") String productId) {
@@ -58,7 +42,7 @@ public class BankController {
         return new ResponseEntity<>(this.bankService.getAllProduct(), HttpStatus.OK);
     }
     //Product
-    @PostMapping("/products")
+    @PostMapping("")
     public ResponseEntity<?> addProduct(@RequestBody Product product) {
         ResponseEntity<?> responseEntity;
         try {

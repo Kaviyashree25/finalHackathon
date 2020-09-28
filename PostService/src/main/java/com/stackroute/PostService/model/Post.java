@@ -6,7 +6,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Post
 {
     private String postId;
-    private String userId;
     private String circleId;
     private String postTitle;
     private String postContent;
@@ -16,7 +15,7 @@ public class Post
 
     public Post(String postId, String userId, String circleId, String postTitle, String postContent) {
         this.postId = postId;
-        this.userId = userId;
+
         this.circleId = circleId;
         this.postTitle = postTitle;
         this.postContent = postContent;
@@ -28,14 +27,6 @@ public class Post
 
     public void setPostId(String postId) {
         this.postId = postId;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 
     public String getCircleId() {
@@ -66,7 +57,6 @@ public class Post
     public String toString() {
         return "Post{" +
                 "postId='" + postId + '\'' +
-                ", userId='" + userId + '\'' +
                 ", circleId='" + circleId + '\'' +
                 ", postTitle='" + postTitle + '\'' +
                 ", postContent='" + postContent + '\'' +

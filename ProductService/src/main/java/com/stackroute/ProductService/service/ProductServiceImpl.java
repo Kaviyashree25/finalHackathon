@@ -3,7 +3,7 @@ package com.stackroute.ProductService.service;
 import com.stackroute.ProductService.exception.ProductAlreadyExistsException;
 import com.stackroute.ProductService.exception.ProductDoesNotExistsException;
 import com.stackroute.ProductService.model.Product;
-import com.stackroute.ProductService.model.User;
+import com.stackroute.ProductService.model.ProductUser;
 import com.stackroute.ProductService.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,9 +24,9 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public Product followProduct(Product product,String userId) throws ProductAlreadyExistsException, ProductDoesNotExistsException {
+    public Product followProduct(Product product,String userId) throws ProductAlreadyExistsException {
             Product createdProduct;
-            Optional<User> userOptional = this.productRepository.findById(userId);
+            Optional<ProductUser> userOptional = this.productRepository.findById(userId);
             if (userOptional.isPresent()) {
                 if (userOptional.get().getProducts() != null) {
                         Optional<Product> productOptional = userOptional.get().getProducts().stream()
@@ -51,9 +51,8 @@ public class ProductServiceImpl implements ProductService {
             }else {
                         List<Product> list = new ArrayList<>();
                         list.add(product);
-                        User user = new User();
+                        ProductUser user = new ProductUser();
                         user.setUserId(userId);
-                        product.getUsers().add(user);
                         user.setProducts(list);
                         this.productRepository.save(user);
                         createdProduct = product;
@@ -62,21 +61,19 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-        public boolean unfollowProduct(String productId, String userId) throws ProductDoesNotExistsException{
-        Optional<User> userOptional = this.productRepository.findById(userId);
+        public Product unfollowProduct(String productId, String userId) throws ProductDoesNotExistsException{
+        Optional<ProductUser> userOptional = this.productRepository.findById(userId);
         if(userOptional.isPresent()) {
-            User user = userOptional.get();
-            boolean status = false;
+            ProductUser user = userOptional.get();
             if (user.getProducts() != null) {
                 Optional<Product> unfollowedProduct = user.getProducts().stream()
                         .filter(product -> product.getProductId().equals(productId))
                         .findFirst();
                 if (unfollowedProduct.isPresent()) {
                     user.getProducts().remove(unfollowedProduct.get());
-                    this.productRepository.delete(user);
+                    this.productRepository.deleteById(userId);
                     this.productRepository.save(user);
-                    status = true;
-
+                    return unfollowedProduct.get();
                 } else {
                     throw new ProductDoesNotExistsException("Product not found");
                 }
@@ -84,17 +81,21 @@ public class ProductServiceImpl implements ProductService {
                 //No circle present for the user, hence nothing to be deleted
                 throw new ProductDoesNotExistsException("Product not found");
             }
-            return status;
         }
         throw new ProductDoesNotExistsException("No user Found");
     }
 
     @Override
     public List<Product> getAllProductByUserId(String userId) throws ProductDoesNotExistsException {
-        Optional<User> userOptional = this.productRepository.findById(userId);
+        Optional<ProductUser> userOptional = this.productRepository.findById(userId);
         if(userOptional.isPresent()){
             return userOptional.get().getProducts();
         }
         throw new ProductDoesNotExistsException("No user Found");
+    }
+
+    @Override
+    public List<ProductUser> getAllUserByProductId(String productId){
+        return this.productRepository.findUserByProduct(productId);
     }
 }

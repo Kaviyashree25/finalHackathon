@@ -12,9 +12,9 @@ services:
       - mysqlDatabase
     network_mode: host
 
-  bankproductservice:
-    image: bankproductservice
-    build: BankProductService/
+  bankservice:
+    image: bankservice
+    build: BankService/
     restart: always
     ports:
       - 9200:9200
@@ -58,6 +58,16 @@ services:
       restart: always
       ports:
         - 9600:9600
+      depends_on:
+        - mongoDatabase
+      network_mode: host
+
+    bankcircleservice:
+      image: bankcircleservice
+      build: BankCircleService/
+      restart: always
+      ports:
+        - 9700:9700
       depends_on:
         - mongoDatabase
       network_mode: host

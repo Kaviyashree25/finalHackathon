@@ -26,13 +26,13 @@ public class PostController {
         this.postService = postService;
     }
 
-    @PostMapping("/post")
+    @PostMapping("/post/{userId}")
     @ApiOperation("Create A Post")
-    public ResponseEntity<?> createPost(@RequestBody Post post)
+    public ResponseEntity<?> createPost(@PathVariable("userId") String userId,@RequestBody Post post)
     {
         try
         {
-            Post createdPost = postService.createPost(post);
+            Post createdPost = postService.createPost(userId,post);
             responseEntity = new ResponseEntity<>(createdPost, HttpStatus.CREATED);
         }
         catch (PostAlreadyExistsException e)
@@ -55,7 +55,7 @@ public class PostController {
     {
         try
         {
-            boolean deletedPost = postService.deletePost(userId, postId);
+            Post deletedPost = postService.deletePost(userId, postId);
             responseEntity = new ResponseEntity(deletedPost, HttpStatus.OK);
         }
         catch (PostDoesNotExistsException e)
@@ -77,15 +77,10 @@ public class PostController {
             Post updatedPost = postService.updatePost(post, userId, postId);
             responseEntity = new ResponseEntity<>(updatedPost, HttpStatus.OK);
         }
-        catch(PostDoesNotExistsException e)
+        catch(PostDoesNotExistsException | NoSuchUserExistsException e)
         {
             responseEntity = new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
-        }
-        catch(NoSuchUserExistsException e)
-        {
-            responseEntity = new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
-        }
-        catch (Exception e)
+        } catch (Exception e)
         {
             responseEntity = new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -104,6 +99,22 @@ public class PostController {
         else
         {
             responseEntity = new ResponseEntity("No Posts Present.", HttpStatus.NOT_FOUND);
+        }
+        return responseEntity;
+    }
+    @GetMapping("/posts/{userId}")
+    @ApiOperation("View All Posts By User")
+    public ResponseEntity<?> getAllPostsByUser(@PathVariable("userId") String userId)
+    {
+        List<Post> postList = null;
+        try {
+            postList = postService.getAllPostsByUser(userId);
+            responseEntity = new ResponseEntity<>(postList, HttpStatus.OK);
+        } catch (NoSuchUserExistsException e) {
+            responseEntity = new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+        }catch (Exception e)
+        {
+            responseEntity = new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return responseEntity;
     }

@@ -3,22 +3,20 @@ package com.stackroute.ProductService.model;
 import java.util.List;
 
 public class Product {
-
     private String productId;
     private String productName;
     private String description;
     private String productImage;
-    private List<User> users;
+
 
     public Product() {
     }
 
-    public Product(String productId, String productName, String description, String productImage, List<User> users) {
+    public Product(String productId, String productName, String description, String productImage, List<ProductUser> users) {
         this.productId = productId;
         this.productName = productName;
         this.description = description;
         this.productImage = productImage;
-        this.users = users;
     }
 
     public String getProductId() {
@@ -53,13 +51,6 @@ public class Product {
         this.productImage = productImage;
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
 
     @Override
     public String toString() {
@@ -68,7 +59,6 @@ public class Product {
                 ", productName='" + productName + '\'' +
                 ", description='" + description + '\'' +
                 ", productImage='" + productImage + '\'' +
-                ", users=" + users +
                 '}';
     }
 }

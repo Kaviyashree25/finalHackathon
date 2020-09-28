@@ -11,32 +11,16 @@ public class User {
     private String userName;
     private String dob;
     private String userRole;
-    private List<Circle> circles;
-    private List<Product> products;
-    private List<Circle> circleRequests;
-    private List<Post> posts;
     private String gender;
 
     public User() {
     }
 
-    public User(String userId, String userName, String dob, String userRole, List<Circle> circles, List<Product> products, List<Circle> circleRequests, List<Post> posts, String gender) {
+    public User(String userId, String userName, String dob, String userRole, String gender) {
         this.userId = userId;
         this.userName = userName;
         this.dob = dob;
         this.userRole = userRole;
-        this.circles = circles;
-        this.products = products;
-        this.circleRequests = circleRequests;
-        this.posts = posts;
-        this.gender = gender;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
         this.gender = gender;
     }
 
@@ -72,36 +56,12 @@ public class User {
         this.userRole = userRole;
     }
 
-    public List<Circle> getCircles() {
-        return circles;
+    public String getGender() {
+        return gender;
     }
 
-    public void setCircles(List<Circle> circles) {
-        this.circles = circles;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
-    public List<Circle> getCircleRequests() {
-        return circleRequests;
-    }
-
-    public void setCircleRequests(List<Circle> circleRequests) {
-        this.circleRequests = circleRequests;
-    }
-
-    public List<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     @Override
@@ -111,10 +71,6 @@ public class User {
                 ", userName='" + userName + '\'' +
                 ", dob='" + dob + '\'' +
                 ", userRole='" + userRole + '\'' +
-                ", circles=" + circles +
-                ", products=" + products +
-                ", circleRequests=" + circleRequests +
-                ", posts=" + posts +
                 ", gender='" + gender + '\'' +
                 '}';
     }

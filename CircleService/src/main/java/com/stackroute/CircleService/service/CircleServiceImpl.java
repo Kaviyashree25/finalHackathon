@@ -2,11 +2,9 @@ package com.stackroute.CircleService.service;
 
 import com.stackroute.CircleService.exception.CircleAlreadyExistsException;
 import com.stackroute.CircleService.exception.CircleNotFoundException;
-import com.stackroute.CircleService.exception.NotAuthorizedException;
 import com.stackroute.CircleService.exception.UserNotFoundException;
 import com.stackroute.CircleService.model.Circle;
-import com.stackroute.CircleService.model.Post;
-import com.stackroute.CircleService.model.User;
+import com.stackroute.CircleService.model.CircleUser;
 import com.stackroute.CircleService.repository.CircleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,185 +24,101 @@ public class CircleServiceImpl implements CircleService {
     }
 
     @Override
-    public Circle createCircle(Circle circle) throws CircleAlreadyExistsException {
-        Circle createdCircle;
-        Optional<User> userOptional = this.circleRepository.findById(circle.getCreatedBy());
-        if (userOptional.get().getCircles() != null) {
-            if (userOptional.isPresent()) {
-                Optional<Circle> circleOptional = userOptional.get().getCircles().stream()
-                        .filter(circles -> circles.getCircleId().equals(circle.getCircleId()))
-                        .findFirst();
-                if (circleOptional.isPresent()) {
-                    throw new CircleAlreadyExistsException("Circle Already Exists");
-                } else {
-                    userOptional.get().getCircles().add(circle);
-                    this.circleRepository.delete(userOptional.get());
-                    this.circleRepository.save(userOptional.get());
-                    createdCircle = circle;
-                }
-            } else {
-                String userId = circle.getCreatedBy();
-                List<Circle> list = new ArrayList<>();
-                list.add(circle);
-                User user = new User();
-                user.setUserId(userId);
-                circle.getUsers().add(user);
-                user.setCircles(list);
-                this.circleRepository.save(user);
-                createdCircle = circle;
+    public Circle joinCircle(Circle circle, String userId) throws CircleAlreadyExistsException {
+
+        Optional<CircleUser> userOptional = circleRepository.findById(userId);
+        if (userOptional.isPresent()) {
+            CircleUser user = userOptional.get();
+            if(user.getCircles()==null){
+                user.setCircles(new ArrayList<>());
             }
+            if(user.getCircles().contains(circle)){
+                throw new CircleAlreadyExistsException("Circle Already Exists");
+            }
+            user.getCircles().add(circle);
+            circleRepository.deleteById(userId);
+            circleRepository.save(user);
+            return circle;
         } else {
-            List<Circle> list = new ArrayList<>();
-            list.add(circle);
-            userOptional.get().setCircles(list);
-            this.circleRepository.delete(userOptional.get());
-            this.circleRepository.save(userOptional.get());
-            createdCircle = circle;
+            CircleUser circleUser = new CircleUser();
+            circleUser.setUserId(userId);
+            List<Circle> circles =new ArrayList<>();
+            circles.add(circle);
+            circleUser.setCircles(circles);
+            circleRepository.save(circleUser);
+            return circle;
         }
-        return createdCircle;
+
     }
 
     @Override
-    public boolean deleteCircle(String circleId, String userId) throws CircleNotFoundException, NotAuthorizedException {
-        Optional<User> userOptional = circleRepository.findById(userId);
-        User user = userOptional.get();
-        boolean status = false;
-
-        if (userOptional.get().getCircles() != null) {
-            Optional<Circle> deletedCircle = user.getCircles().stream()
-                    .filter(circle -> circle.getCircleId().equals(circleId))
-                    .findFirst();
-
-            if (deletedCircle.isPresent()) {
-                if (!deletedCircle.get().getCreatedBy().equals(userId)) {
-                    throw new NotAuthorizedException("You can't delete this circle as you are not the admin of this circle");
+    public Circle leaveCircle(String circleId, String userId) throws CircleNotFoundException, UserNotFoundException {
+        Optional<CircleUser> userOptional = circleRepository.findById(userId);
+        if (userOptional.isPresent()) {
+            CircleUser user = userOptional.get();
+            if (userOptional.get().getCircles() != null) {
+                Optional<Circle> circle = user.getCircles().stream().filter(circles -> circles.getCircleId().equals(circleId)).findFirst();
+                if (circle.isPresent()) {
+                    user.getCircles().remove(circle.get());
                 } else {
-                    deletedCircle.get().getUsers().remove(user);
-                    user.getCircles().remove(deletedCircle.get());
-                    circleRepository.delete(user);
+                    throw new CircleNotFoundException("Circle not found");
+                }
+                circleRepository.delete(user);
+                if(!user.getCircles().isEmpty()) {
                     circleRepository.save(user);
-                    status = true;
                 }
+                return circle.get();
             } else {
+                //No circle present for the user, hence nothing to be left
                 throw new CircleNotFoundException("Circle not found");
             }
-        } else {
-            //No circle present for the user, hence nothing to be deleted
-            throw new CircleNotFoundException("Circle not found");
         }
-        return status;
+        throw new UserNotFoundException("User not found");
     }
 
     @Override
-    public Circle joinCircle(Circle circle, String userId) throws CircleNotFoundException {
-        Optional<User> userOptional = circleRepository.findById(userId);
-        User user = userOptional.get();
-
-        circle.getUsers().add(user);
-        user.getCircles().add(circle);
-
-        circleRepository.delete(user);
-        circleRepository.save(user);
-
-        return circle;
-    }
-
-    @Override
-    public Circle leaveCircle(String circleId, String userId) throws CircleNotFoundException {
-        Optional<User> userOptional = circleRepository.findById(userId);
-        User user = userOptional.get();
-
-        if (userOptional.get().getCircles() != null) {
-            Optional<Circle> circle = user.getCircles().stream().filter(circles -> circles.getCircleId().equals(circleId)).findFirst();
-
-            if (circle.isPresent()) {
-                user.getCircles().remove(circle.get());
-                circle.get().getUsers().remove(user);
-            } else {
-                throw new CircleNotFoundException("Circle not found");
-            }
-            circleRepository.delete(user);
-            circleRepository.save(user);
-            return circle.get();
-        } else {
-            //No circle present for the user, hence nothing to be left
-            throw new CircleNotFoundException("Circle not found");
-        }
-    }
-
-    @Override
-    public Circle updateCircle(Circle circle, String circleId, String userId) {
-        Optional<User> userOptional = circleRepository.findById(userId);
-        User user = userOptional.get();
-
-        if (userOptional.get().getCircles() != null) {
-            Optional<Circle> circleOptional = user.getCircles().stream().filter(circles -> circles.getCircleId().equals(circleId)).findFirst();
-            circleOptional.get().setCircleName(circle.getCircleName());
-            circleOptional.get().setCircleDescription(circle.getCircleDescription());
-
-            user.getCircles().remove(circle);
-            user.getCircles().add(circleOptional.get());
-
-            circleRepository.save(user);
-            return circleOptional.get();
-        } else {
-            //No circle present for the user
-            return null;
-        }
-    }
-
-    @Override
-    public List<Post> getAllPostsOfCircle(String circleId, String userId) throws CircleNotFoundException {
-        Optional<User> userOptional = circleRepository.findById(userId);
-        User user = userOptional.get();
-
-        if (userOptional.get().getCircles() != null) {
-            Optional<Circle> circle = user.getCircles().stream().filter(circles -> circles.getCircleId().equals(circleId)).findFirst();
-            if (circle.isEmpty()) {
-                throw new CircleNotFoundException("Circle not found");
-            }
-            return circle.get().getPosts();
-        } else {
-            //No circle present for the user
-            return null;
-        }
-    }
-
-    @Override
-    public Boolean sendCircleRequest(Circle circle, String userId) throws UserNotFoundException {
-        Optional<User> userOptional = circleRepository.findById(userId);
+    public void sendCircleRequest(Circle circle, String userId){
+        Optional<CircleUser> userOptional = circleRepository.findById(userId);
         if (userOptional.isPresent()) {
             userOptional.get().getCircleRequests().add(circle);
             this.circleRepository.deleteById(userId);
             this.circleRepository.insert(userOptional.get());
-            return true;
         } else {
-            throw new UserNotFoundException("User not found");
+            CircleUser circleUser = new CircleUser();
+            circleUser.setUserId(userId);
+            List<Circle> circles =new ArrayList<>();
+            circles.add(circle);
+            circleUser.setCircleRequests(circles);
+            circleRepository.save(circleUser);
         }
     }
 
     @Override
-    public Boolean acceptRequest(Circle circle, String userId) throws UserNotFoundException, CircleNotFoundException {
+    public void acceptRequest(Circle circle, String userId) throws UserNotFoundException, CircleAlreadyExistsException {
         this.joinCircle(circle, userId);
-        Optional<User> userOptional = this.circleRepository.findById(userId);
+        Optional<CircleUser> userOptional = this.circleRepository.findById(userId);
         if (userOptional.isPresent()) {
-            userOptional.get().getCircleRequests().remove(circle);
+            CircleUser user = userOptional.get();
+            List<Circle> circles = user.getCircles();
+            circles.remove(circle);
+            user.setCircleRequests(circles);
             this.circleRepository.deleteById(userId);
-            this.circleRepository.insert(userOptional.get());
-            return true;
+            this.circleRepository.insert(user);
         } else {
             throw new UserNotFoundException("User not found");
         }
     }
 
     @Override
-    public Boolean rejectRequest(Circle circle, String userId) throws UserNotFoundException {
-        Optional<User> userOptional = this.circleRepository.findById(userId);
+    public void rejectRequest(Circle circle, String userId) throws UserNotFoundException {
+        Optional<CircleUser> userOptional = this.circleRepository.findById(userId);
         if (userOptional.isPresent()) {
-            userOptional.get().getCircleRequests().remove(circle);
+            CircleUser user = userOptional.get();
+            List<Circle> circles = user.getCircles();
+            circles.remove(circle);
+            user.setCircleRequests(circles);
             this.circleRepository.deleteById(userId);
-            this.circleRepository.insert(userOptional.get());
-            return true;
+            this.circleRepository.insert(user);
         } else {
             throw new UserNotFoundException("User not found");
         }
@@ -212,7 +126,7 @@ public class CircleServiceImpl implements CircleService {
 
     @Override
     public List<Circle> getCirclesByUserId(String userId) throws UserNotFoundException {
-        Optional<User> optionalUser = this.circleRepository.findById(userId);
+        Optional<CircleUser> optionalUser = this.circleRepository.findById(userId);
         if (optionalUser.isEmpty()) {
             throw new UserNotFoundException("User not found");
         }
@@ -220,33 +134,27 @@ public class CircleServiceImpl implements CircleService {
     }
 
     @Override
-    public List<Circle> exploreCircles(String userId) throws UserNotFoundException {
-        Optional<User> optionalUser = this.circleRepository.findById(userId);
-        List<Circle> explore = new ArrayList<>();
-        if (optionalUser.isEmpty()) {
-            throw new UserNotFoundException("User not found");
+    public List<Circle> getAllCircles() {
+        List<CircleUser> circleUsers = this.circleRepository.findAll();
+        List<Circle> circles = new ArrayList<>();
+        for (CircleUser circleUser : circleUsers
+        ) {
+            circles.addAll(circleUser.getCircles());
         }
-        if (optionalUser.get().getCircles().isEmpty()) {
-            return explore;
-        } else {
-            List<Circle> circles = optionalUser.get().getCircles();
-            for (Circle circle : circles) {
-                for (User user : circle.getUsers()) {
-                    List<Circle> otherCircle = user.getCircles();
-                    for (Circle circle1 : otherCircle) {
-                        if (!circles.contains(circle1)) {
-                            explore.add(circle1);
-                        }
-                    }
-                    if (explore.size() >= 2) {
-                        break;
-                    }
-                }
-                if (explore.size() >= 10) {
-                    break;
-                }
-            }
-        }
-        return explore;
+        return circles;
     }
+
+    @Override
+    public List<Circle> getAllCircleRequest(String userId) throws UserNotFoundException {
+        try{
+            return this.circleRepository.findById(userId).get().getCircleRequests();
+        }catch (Exception e){
+            throw new UserNotFoundException("User Not Found");
+        }
+    }
+    @Override
+    public List<CircleUser> getAllUserByCircleId(String circleId){
+        return this.circleRepository.findUserByCircle(circleId);
+    }
+
 }

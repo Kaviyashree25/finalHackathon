@@ -28,4 +28,6 @@ public interface CircleService {
     Boolean acceptRequest(Circle circle,String userId) throws UserNotFoundException, CircleNotFoundException;
     Boolean rejectRequest(Circle circle,String userId) throws  UserNotFoundException;
 
+    List<Circle> getCirclesByUserId(String userId) throws UserNotFoundException;
+    List<Circle> exploreCircles(String userId) throws UserNotFoundException;
 }

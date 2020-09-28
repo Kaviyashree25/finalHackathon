@@ -1,0 +1,33 @@
+main{
+    height: 100%;
+    width: 100%;
+    padding: 2em;
+}
+
+form{
+    width: 40vw;
+    margin: 10vh auto;
+    box-shadow: 2px 2px 10px gray;
+    padding : 2em;
+    display: flex;
+    flex-direction: column;
+}
+
+input{
+    font-size: 1em;
+    width: 90%;
+    margin: 1em;
+}
+
+.button{
+    width:5vw;
+    margin-left: 30vw;
+    border-radius: 5px;
+}
+
+.button:hover{
+    box-shadow: 2px 2px 10px indigo;
+}
+.error-message{
+    color: red;
+}

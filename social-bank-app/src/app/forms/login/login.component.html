@@ -1,1 +1,20 @@
-<p>login works!</p>
+<button matButton (click)="back()">Back</button>
+<main>
+    <form #loginForm='ngForm'>
+        <mat-form-field>
+            <input name="username" matInput placeholder="Enter Username" #username='ngModel' ngModel required>
+            <mat-error *ngIf='username.invalid && username.touched'>
+                <small class='error-message' *ngIf='username.invalid'>User Name is mandatory</small>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput type="password" name='password' placeholder="Enter Password" #password='ngModel' ngModel required>
+            <mat-error *ngIf='password.invalid && password.touched'>
+                <small class='error-message' *ngIf='password.invalid'>Password is mandatory </small>
+            </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" class='button' [disabled]="loginForm.invalid" (click)="login(loginForm.value)">Login</button>
+    </form>
+</main>

@@ -11,9 +11,10 @@
    background-color: rgb(0, 0, 0,0.5);
  }
  #logo{
-    width: 10vw;
-    padding:0 2%; 
- }
+   width: 8vw;
+   max-height: 80%;
+   padding: 0 2%;
+}
  .fill-remaining-space {
      /* This fills the remaining space, by using flexbox. 
         Every toolbar row uses a flexbox row layout. */

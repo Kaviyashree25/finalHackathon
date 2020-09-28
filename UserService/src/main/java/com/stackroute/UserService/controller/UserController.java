@@ -37,6 +37,21 @@ public class UserController {
     }
 
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getUserById(@PathVariable("id") String userId) {
+        ResponseEntity<?> responseEntity;
+        try {
+            User savedUser = this.userService.getUser(userId);
+            responseEntity = new ResponseEntity<>(savedUser, HttpStatus.OK);
+        } catch (UserNotFoundException e) {
+            responseEntity = new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        } catch (Exception e) {
+            responseEntity = new ResponseEntity<>("Some Internal Error Try after sometime", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
+    }
+
+
     //Boolean
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable("id") String userId) {

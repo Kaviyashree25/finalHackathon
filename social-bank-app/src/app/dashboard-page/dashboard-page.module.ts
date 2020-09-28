@@ -9,12 +9,13 @@ import { ProductSectionComponent } from './product-section/product-section.compo
 import { RouterModule } from '@angular/router';
 import { HeaderFooterModule } from '../header-footer/header-footer.module';
 import { NavigationComponent } from './navigation/navigation.component';
-import { MatGridListModule } from '@angular/material/grid-list'
+import { MatGridListModule } from '@angular/material/grid-list';
+import { InfoTabComponent } from './info-tab/info-tab.component'
 
 
 
 @NgModule({
-  declarations: [DashboardComponent, PostSectionComponent, CircleSectionComponent, ProfileSectionComponent, SettingsSectionComponent, ProductSectionComponent, NavigationComponent],
+  declarations: [DashboardComponent, PostSectionComponent, CircleSectionComponent, ProfileSectionComponent, SettingsSectionComponent, ProductSectionComponent, NavigationComponent, InfoTabComponent],
   imports: [
     CommonModule,
     RouterModule,

@@ -45,6 +45,15 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public User getUser(String userId) throws UserNotFoundException {
+        Optional<User> optionalUser = this.userRepository.findById(userId);
+        if(optionalUser.isPresent()){
+            return optionalUser.get();
+        }
+        throw  new UserNotFoundException("User not found");
+    }
+
+    @Override
     public User updateUser(User user,String userId) throws UserNotFoundException {
         Optional<User> optionalProduct = this.userRepository.findById(userId);
         if (optionalProduct.isEmpty()) {

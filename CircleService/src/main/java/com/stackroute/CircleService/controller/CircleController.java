@@ -3,6 +3,7 @@ package com.stackroute.CircleService.controller;
 import com.stackroute.CircleService.exception.CircleAlreadyExistsException;
 import com.stackroute.CircleService.exception.CircleNotFoundException;
 import com.stackroute.CircleService.exception.NotAuthorizedException;
+import com.stackroute.CircleService.exception.UserNotFoundException;
 import com.stackroute.CircleService.model.Circle;
 import com.stackroute.CircleService.model.Post;
 import com.stackroute.CircleService.service.CircleService;
@@ -96,6 +97,66 @@ public class CircleController {
             List<Post> postList = this.circleService.getAllPostsOfCircle(circleId, userId);
             responseEntity = new ResponseEntity<>(postList, HttpStatus.OK);
         } catch (CircleNotFoundException e) {
+            responseEntity = new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        } catch (Exception e) {
+            responseEntity = new ResponseEntity("Internal Server Error, Try again in some time", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
+    }
+    @PostMapping("/circle/SendRequest/{userId}")
+    public ResponseEntity<?> sendRequest(@RequestBody Circle circle, @PathVariable("userId") String userId) {
+        try {
+            this.circleService.sendCircleRequest(circle, userId);
+            responseEntity = new ResponseEntity<>(true, HttpStatus.OK);
+        } catch (UserNotFoundException e) {
+            responseEntity = new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        } catch (Exception e) {
+            responseEntity = new ResponseEntity("Internal Server Error, Try again in some time", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
+    }
+    @PostMapping("/circle/acceptRequest/{userId}")
+    public ResponseEntity<?> acceptRequest(@RequestBody Circle circle, @PathVariable("userId") String userId) {
+        try {
+            this.circleService.acceptRequest(circle, userId);
+            responseEntity = new ResponseEntity<>(true, HttpStatus.OK);
+        } catch (UserNotFoundException e) {
+            responseEntity = new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        } catch (Exception e) {
+            responseEntity = new ResponseEntity("Internal Server Error, Try again in some time", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
+    }
+    @PostMapping("/circle/rejectRequest/{userId}")
+    public ResponseEntity<?> rejectRequest(@RequestBody Circle circle, @PathVariable("userId") String userId) {
+        try {
+            this.circleService.rejectRequest(circle, userId);
+            responseEntity = new ResponseEntity<>(true, HttpStatus.OK);
+        } catch (UserNotFoundException e) {
+            responseEntity = new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        } catch (Exception e) {
+            responseEntity = new ResponseEntity("Internal Server Error, Try again in some time", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
+    }
+    @GetMapping("/circles/{userId}")
+    public ResponseEntity<?> getCirclesByUserId(@PathVariable("userId") String userId) {
+        try {
+            List<Circle> circles = this.circleService.getCirclesByUserId(userId);
+            responseEntity = new ResponseEntity<>(circles, HttpStatus.OK);
+        } catch (UserNotFoundException e) {
+            responseEntity = new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        } catch (Exception e) {
+            responseEntity = new ResponseEntity("Internal Server Error, Try again in some time", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
+    }
+    @GetMapping("/circles/explore/{userId}")
+    public ResponseEntity<?> explore(@PathVariable("userId") String userId) {
+        try {
+            List<Circle> circles = this.circleService.exploreCircles(userId);
+            responseEntity = new ResponseEntity<>(circles, HttpStatus.OK);
+        } catch (UserNotFoundException e) {
             responseEntity = new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
         } catch (Exception e) {
             responseEntity = new ResponseEntity("Internal Server Error, Try again in some time", HttpStatus.INTERNAL_SERVER_ERROR);

@@ -1,0 +1,12 @@
+.flex{
+    display: flex;
+    flex-direction: row;
+}
+.nav{
+    min-width: 20%;
+    min-height: 80vh;
+}
+.route{
+    min-width: 80%;
+    min-height: 80vh;
+}

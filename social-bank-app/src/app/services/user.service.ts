@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../model/user';
+import { AuthServiceService } from './auth-service.service';
 
 
 @Injectable({
@@ -10,9 +11,13 @@ import { User } from '../model/user';
 export class UserService {
 
   private API_URL = "http://localhost:9600/api/v1/user";
+  public userUrl='http://localhost:8765/user-service/api/v1/user/';
 
+  constructor(private httpClient: HttpClient, private authService:AuthServiceService) { }
 
-  constructor(private httpClient: HttpClient) { }
+  getUser(){
+    return this.httpClient.get(this.userUrl+`/${this.authService.getActiverUser()}`);
+  }
 
   addUser(user: User): Observable<User> {
     return this.httpClient.post<User>('${this.API_URL}', user);

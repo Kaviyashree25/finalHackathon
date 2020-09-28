@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UserServiceService } from './user-service.service';
+import { CircleService } from './circle.service';
 
-describe('UserServiceService', () => {
+describe('CircleService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: UserServiceService = TestBed.get(UserServiceService);
+    const service: CircleService = TestBed.get(CircleService);
     expect(service).toBeTruthy();
   });
 });

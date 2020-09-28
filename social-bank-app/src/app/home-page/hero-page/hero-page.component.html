@@ -1,26 +1,26 @@
 <Section class="hero-unit">
     <Section class="mask">
-<mat-toolbar id="title">
-    <img src="/assets/logo.png" alt="logo" id="logo">
-    <span>THE SOCIAL BANK</span>
-    <span class="fill-remaining-space"></span>
-<nav mat-tab-nav-bar id="bar3">
-<a *ngIf="true" mat-tab-link routerLink="/login"> Member Login </a>
-<a mat-tab-link routerLink="/bankLogin">Bank Login </a>
-</nav> 
-</mat-toolbar>
-<mat-grid-list cols="10" rowHeight="85vh">
-    <mat-grid-tile [colspan]= "5">
-        <app-register></app-register>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]= "5">
-        <div id="tile">
-            <div>A Social Network Built On </div>
-            <br>
-            <div> Trust, Control & Love... </div>
-        </div>
-        
-    </mat-grid-tile>
-  </mat-grid-list>
-</Section>
+        <mat-toolbar id="title">
+            <img src="/assets/logo.png" alt="logo" id="logo">
+            <span>THE SOCIAL BANK</span>
+            <span class="fill-remaining-space"></span>
+            <nav mat-tab-nav-bar id="bar3">
+                <a *ngIf="true" mat-tab-link routerLink="/login"> Member Login </a>
+                <a mat-tab-link routerLink="/bankLogin">Bank Login </a>
+            </nav>
+        </mat-toolbar>
+        <mat-grid-list cols="10" rowHeight="85vh">
+            <mat-grid-tile [colspan]="5">
+                <app-register></app-register>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="5">
+                <div id="tile">
+                    <div>A Social Network Built On </div>
+                    <br>
+                    <div> Trust, Control & Love... </div>
+                </div>
+
+            </mat-grid-tile>
+        </mat-grid-list>
+    </Section>
 </Section>

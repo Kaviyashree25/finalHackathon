@@ -10,7 +10,5 @@ export class Circle {
                 public users?: Array<User>,
                 public posts?: Array<Post>,
                 public createdBy?: string)
-                {
-
-                }
+                {}
 }

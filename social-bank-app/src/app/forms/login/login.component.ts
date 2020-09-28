@@ -12,6 +12,7 @@ import { RouterService } from 'src/app/services/router.service';
 export class LoginComponent implements OnInit {
   
   user: UserAuth;
+
   constructor(private authService: AuthServiceService, private routerService: RouterService) { 
     this.user = new UserAuth();
   }
@@ -23,14 +24,27 @@ export class LoginComponent implements OnInit {
     this.user.userId = user.username;
     this.user.userPassword = user.password;
     const token = this.authService.authenticateUser(this.user).subscribe(
-      data => {
+      (data:any) => {
+        // if (data === null || data.length === 0) 
+        // {
+        //     alert('Wrong Credentials, Try again!');
+        // } 
+        // else 
+        // {
+        //     localStorage.setItem("user", this.user.userId);
+        //     this.routerService.routeToDashboard();
+        // }
+
         const token = data['token'];
         console.log(token);
-        if (token !== 'null') {
+        if (token !== 'null') 
+        {
           this.authService.setActiveUser(this.user.userId);
           this.authService.setBearerToken(token);
           this.routerService.routeToDashboard();
-        } else {
+        } 
+        else 
+        {
           alert('Wrong Credentials, Try again!');
           this.routerService.routeToLogin();
         }
@@ -40,6 +54,7 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+
   back(){
     this.routerService.routeBack();
   }

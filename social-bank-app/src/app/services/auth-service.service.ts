@@ -1,16 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Circle } from '../model/circle';
-import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
-
-  public activeUser: String;
-  private userAuth_url = 'http://localhost:8765/user-auth/api/v1/auth/login';
+  public circle: Circle;
+  public activeUser: string;
+  private userAuth_url = 'http://localhost:8761/user-auth/api/v1/auth/login';
   constructor(private httpClient: HttpClient) {
+    this.circle = new Circle();
   }
 
   public authenticateUser(user) {
@@ -19,7 +19,7 @@ export class AuthServiceService {
   }
 
   setActiveUser(userId) {
-    this.activeUser=userId;
+    this.activeUser = userId;
   }
 
   getActiverUser() {

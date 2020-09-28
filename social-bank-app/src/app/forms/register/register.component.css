@@ -1,0 +1,70 @@
+* {
+    color: goldenrod;
+}
+
+.registration{
+    margin: auto;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.register-form
+{
+    margin-top: 20vh;
+}
+form
+{
+    display: flex;
+    flex-direction: column;
+    padding: 2em;  
+    height: 50vh;
+    width: 70vh;
+    border: 2px solid goldenrod;  
+    border-radius: 1em;
+}
+
+::placeholder{
+    background-color: goldenrod;
+    opacity: 0.5;
+}
+
+mat-radio-group
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.button:hover{
+    color:black;
+    background-color: goldenrod;
+    padding: 2vh;
+    border-radius: 1em;
+    font-weight: bolder;
+}
+
+mat-radio-button
+{
+    padding-right: 5px;
+}
+
+button{
+    color: goldenrod;
+    background-color: black;
+    padding: 2vh;
+    border-radius: 1em;
+    font-weight: bolder;
+    font-size: large;
+}
+
+::ng-deep .dp {
+   
+    padding-left: 5px;
+      
+}
+
+
+
+
+

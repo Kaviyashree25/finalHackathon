@@ -6,7 +6,7 @@ export class User {
     
     constructor(public userId?: string,
                 public userName?: string,
-                public dob?: string,
+                public dob?: any,
                 public userRole?: string,
                 public circles?: Array<Circle>,
                 public products?: Array<Product>,

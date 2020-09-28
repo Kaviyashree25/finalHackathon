@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UserAuth } from 'src/app/model/user-auth';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { RouterService } from 'src/app/services/router.service';
 
 @Component({
   selector: 'app-bank-login',
@@ -7,9 +10,51 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BankLoginComponent implements OnInit {
 
-  constructor() { }
+  user: UserAuth;
+
+  constructor(private authService: AuthServiceService, private routerService: RouterService) { 
+    this.user = new UserAuth();
+  }
 
   ngOnInit() {
   }
 
+  login(user) {
+    this.user.userId = user.username;
+    this.user.userPassword = user.password;
+    const token = this.authService.authenticateUser(this.user).subscribe(
+      (data:any) => {
+        // if (data === null || data.length === 0) 
+        // {
+        //     alert('Wrong Credentials, Try again!');
+        // } 
+        // else 
+        // {
+        //     localStorage.setItem("user", this.user.userId);
+        //     this.routerService.routeToDashboard();
+        // }
+
+        const token = data['token'];
+        console.log(token);
+        if (token !== 'null') 
+        {
+          this.authService.setActiveUser(this.user.userId);
+          this.authService.setBearerToken(token);
+          this.routerService.routeToDashboard();
+        } 
+        else 
+        {
+          alert('Wrong Credentials, Try again!');
+          this.routerService.routeToLogin();
+        }
+      },
+      error => {
+        console.log(error.message);
+      }
+    );
+  }
+
+  back(){
+    this.routerService.routeBack();
+  }
 }

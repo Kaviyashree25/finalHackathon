@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -25,6 +26,31 @@ public class UserAuthController {
     @Autowired
     public UserAuthController(UserAuthenticationService authicationService) {
         this.userAuthenticationService = authicationService;
+    }
+
+    @PostMapping("/api/v1/auth/bankAuth")
+    public ResponseEntity banklogin(@RequestBody User user) {
+        try {
+            if(user.getUserId().equals("bankUser") && user.getUserPassword().equals("bankPass")) {
+                String jwtToken = Jwts.builder()
+                        .setSubject(user.getUserId())
+                        .setIssuedAt(new Date())
+                        .setExpiration(new Date(System.currentTimeMillis() + 300000))
+                        .signWith(SignatureAlgorithm.HS256,"secretkey")
+                        .compact();
+                map.put("message", "User successfully logged in");
+                map.put("token", jwtToken);
+            }else{
+                throw new Exception("NOT AUTHORIZED");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("message",e.getMessage());
+            map.put("token",null);
+            responseEntity = new ResponseEntity(map, HttpStatus.UNAUTHORIZED);
+        }
+        responseEntity = new ResponseEntity(map,HttpStatus.OK);
+        return responseEntity;
     }
 
     @PostMapping("/api/v1/auth/register")

@@ -8,9 +8,14 @@ import { Circle } from '../model/circle';
 export class AuthServiceService {
   public circle: Circle;
   public activeUser: string;
-  private userAuth_url = 'http://localhost:8761/user-auth/api/v1/auth/login';
+  private userAuth_url = `http://localhost:8765/user-auth/api/v1/auth/login`;
   constructor(private httpClient: HttpClient) {
     this.circle = new Circle();
+  }
+  
+  public authenticateBankUser(user) {
+    console.log(user);
+    return this.httpClient.post(`http://localhost:8765/user-auth/api/v1/auth/bankAuth`, user);
   }
 
   public authenticateUser(user) {

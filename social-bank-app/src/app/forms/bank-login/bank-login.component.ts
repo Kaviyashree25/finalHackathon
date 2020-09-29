@@ -22,18 +22,8 @@ export class BankLoginComponent implements OnInit {
   login(user) {
     this.user.userId = user.username;
     this.user.userPassword = user.password;
-    const token = this.authService.authenticateUser(this.user).subscribe(
+    const token = this.authService.authenticateBankUser(this.user).subscribe(
       (data:any) => {
-        // if (data === null || data.length === 0) 
-        // {
-        //     alert('Wrong Credentials, Try again!');
-        // } 
-        // else 
-        // {
-        //     localStorage.setItem("user", this.user.userId);
-        //     this.routerService.routeToDashboard();
-        // }
-
         const token = data['token'];
         console.log(token);
         if (token !== 'null') 

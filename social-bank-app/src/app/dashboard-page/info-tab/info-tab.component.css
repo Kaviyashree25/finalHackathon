@@ -13,7 +13,7 @@
 
 .usr-pic {
     width: 110px;
-    height: 110px;
+    height: 15vh;
     margin: 0 auto;
     margin-bottom: -48px;
 }
@@ -38,3 +38,11 @@
     font-weight: 600;
     margin-bottom: 8px;
 }
+a{
+    padding:2em 2em;
+    text-decoration: none;
+    color: black;
+ }
+ h3{
+     padding-left: 2vw;
+ }

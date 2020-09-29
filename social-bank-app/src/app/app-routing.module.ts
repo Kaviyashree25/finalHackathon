@@ -27,6 +27,10 @@ const routes: Routes = [
     component: BankLoginComponent
   },
   {
+    path: 'bankHome',
+    component: BankDashBoardComponent
+  },
+  {
     path: 'dashboard',
     component: DashboardComponent,
     children: [
@@ -63,6 +67,11 @@ const routes: Routes = [
   },
   {
     path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
     redirectTo: '/home',
     pathMatch: 'full'
   }

@@ -1,1 +1,72 @@
-<p>settings-section works!</p>
+<div class="tab-headers">
+    <div class="tab">
+        <button class="tablinks" (click)="openTab($event, 'Details')">Update Details</button>
+        <button class="tablinks" (click)="openTab($event, 'Password')">Change Password</button>
+    </div>
+
+   <div id="Details" class="tabcontent">
+        <h3>Details</h3>
+         <!--<form #loginForm='ngForm'>
+            <mat-form-field>
+                <input name="fullname" matInput placeholder="Enter Full Name" #fullname='ngModel'
+                    [(ngModel)]="user.userName" required>
+                <mat-error *ngIf='fullname.invalid && fullname.touched'>
+                    <small class='error-message' *ngIf='fullname.invalid'>Full Name is mandatory</small>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-label>
+                <label>Gender: </label>
+                <mat-radio-group aria-label="Select an option" #username='ngModel' name="gender"
+                    [(ngModel)]="user.gender" required>
+                    <mat-radio-button value="Male">Male</mat-radio-button>
+                    <mat-radio-button value="Female">Female</mat-radio-button>
+                </mat-radio-group>
+            </mat-label>
+
+            <mat-form-field>
+                <input matInput [matDatepicker]="dob" placeholder="Date of Birth" #dob='ngModel' name="dob"
+                    [(ngModel)]="user.dob" required>
+                <mat-datepicker-toggle matSuffix [for]="dob" class="dp"></mat-datepicker-toggle>
+                <mat-datepicker #dob [touchUi]="true" class="dp"></mat-datepicker>
+                <mat-error *ngIf="dob.touched && dob.invalid">
+                    <small *ngIf="dob?.errors.required" class='error-message'>Date of Birth is mandatory</small>
+                </mat-error>
+            </mat-form-field>
+
+           <button class='button' [disabled]="loginForm.invalid" (click)="register()">Update</button>
+        </form>-->
+    </div> 
+
+    <div id="Password" class="tabcontent">
+        <h3>Password Change</h3>
+        <p>A form to change </p>
+        <!-- <form #loginForm='ngForm'>
+            <mat-form-field>
+                <input matInput type="password" name='oldpassword' placeholder="Enter Password" #password='ngModel'
+                    [(ngModel)]="user.password" required>
+                <mat-error *ngIf='password.invalid && password.touched'>
+                <small class='error-message' *ngIf='password.invalid'>Password is mandatory </small>
+            </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput type="password" name='newpassword' placeholder="Enter Password" #newpassword='ngModel'
+                    [(ngModel)]="user.password" required>
+                <mat-error *ngIf='newpassword.invalid && newpassword.touched'>
+                <small class='error-message' *ngIf='newpassword.invalid'>Password is mandatory </small>
+            </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput type="password" name='confirmpassword' placeholder="Enter Password" #confirmpassword='ngModel'
+                    [(ngModel)]="user.password" required>
+                <mat-error *ngIf='confirmpassword.invalid && confirmpassword.touched'>
+                <small class='error-message' *ngIf='confirmpassword.invalid'>Password is mandatory </small>
+            </mat-error>
+            </mat-form-field>
+
+            <button class='button' [disabled]="loginForm.invalid" (click)="changePassword()">Change</button>
+        </form> -->
+    </div>
+</div>

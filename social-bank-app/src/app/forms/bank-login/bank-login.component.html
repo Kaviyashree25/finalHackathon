@@ -1,25 +1,30 @@
 <main>
-    <h1> Login As A Bank Employee </h1>
-    <form #loginForm='ngForm'>
-        <mat-form-field class="bank-login-form-input">
-            <input name="username" matInput placeholder="Enter Username" #username='ngModel' ngModel required>
-            <!-- <mat-error *ngIf='username.invalid && username.touched'>
-                <small class='error-message' *ngIf='username.invalid'>User Name is mandatory</small>
-            </mat-error> -->
-        </mat-form-field>
-
-        <mat-form-field class="bank-login-form-input">
-            <input matInput type="password" name='password' placeholder="Enter Password" #password='ngModel' ngModel required>
-            <!-- <mat-error *ngIf='password.invalid && password.touched'>
-                <small class='error-message' *ngIf='password.invalid'>Password is mandatory </small>
-            </mat-error> -->
-        </mat-form-field>
-        <div class="buttons">
-            <button class='button' (click)="back()">BACK</button>
-
-            <button class='button' [disabled]="loginForm.invalid" (click)="login(loginForm.value)">LOGIN!</button>
-        <!-- <button mat-raised-button color="primary" class='button' [disabled]="loginForm.invalid" (click)="login(loginForm.value)">Login</button> -->
-        </div>
-
-    </form>
-</main>
+    <section class="mask">
+        <h1> An awesome day at work </h1>
+        <section class="formMask">
+        <form #loginForm='ngForm'>
+    
+            <mat-form-field class="login-form-input">
+                <input name="username" matInput placeholder="Enter EmployeeId" #username='ngModel' ngModel required>
+                <!-- <mat-error *ngIf='username.invalid && username.touched'>
+                    <small class='error-message' *ngIf='username.invalid'>User Name is mandatory</small>
+                </mat-error> -->
+            </mat-form-field>
+    
+            <mat-form-field class="login-form-input">
+                <input matInput type="password" name='password' placeholder="Enter key" #password='ngModel' ngModel required>
+                <!-- <mat-error *ngIf='password.invalid && password.touched'>
+                    <small class='error-message' *ngIf='password.invalid'>Password is mandatory </small>
+                </mat-error> -->
+            </mat-form-field>
+            <div class="buttons">
+                <button mat-raised-button  class='button' (click)="back()">BACK</button>
+    
+                <button  mat-raised-button class='button' [disabled]="loginForm.invalid" (click)="login(loginForm.value)">GO</button>
+            <!-- <button mat-raised-button color="primary" class='button' [disabled]="loginForm.invalid" (click)="login(loginForm.value)">Login</button> -->
+            </div>
+        
+        </form>
+    </section>
+    </section>
+    </main>

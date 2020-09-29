@@ -12,7 +12,8 @@ export class User {
                 public products?: Array<Product>,
                 public circleRequests?: Array<Circle>,
                 public posts?: Array<Post>,
-                public gender?: string)
+                public gender?: string,
+                public password?: string)
     {
 
     }

@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../model/user';
+import { UserAuth } from '../model/user-auth';
 import { AuthServiceService } from './auth-service.service';
 
 
@@ -10,8 +11,8 @@ import { AuthServiceService } from './auth-service.service';
 })
 export class UserService {
 
-  private API_URL = "http://localhost:9600/api/v1/user";
-  public userUrl='http://localhost:8765/user-service/api/v1/user/';
+  public userUrl='http://localhost:8765/user-service/api/v1/user';
+  public userAuthUrl='http://localhost:8765/user-auth//api/v1/auth/register';
 
   constructor(private httpClient: HttpClient, private authService:AuthServiceService) { }
 
@@ -20,14 +21,18 @@ export class UserService {
   }
 
   addUser(user: User): Observable<User> {
-    return this.httpClient.post<User>('${this.API_URL}', user);
+    return this.httpClient.post<User>(this.userUrl, user);
+  }
+
+  addUserToAuth(user: UserAuth): Observable<User> {
+    return this.httpClient.post<UserAuth>(this.userAuthUrl, user);
   }
 
   deleteUser(userId: string): Observable<any> {
-    return this.httpClient.delete('${this.API_URL}/${userId}', {responseType:'text'});
+    return this.httpClient.delete(`${this.userUrl}/${userId}`);
   }
 
   updateUser(user: User, userId: string): Observable<User> {
-    return this.httpClient.put<User>('${this.API_URL}/${userId}', user);
+    return this.httpClient.put<User>(`${this.userUrl}/${userId}`, user);
   }
 }

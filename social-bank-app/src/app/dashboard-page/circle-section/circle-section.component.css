@@ -3,9 +3,8 @@
     margin-top: 0;
 }
 .cover img {
-    height: auto;
     width: 100%;
-    border-radius: 5%;
+    max-height: 35vh;
 }
 .example-card {
     max-width: 400px;

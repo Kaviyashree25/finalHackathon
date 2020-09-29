@@ -1,11 +1,14 @@
 <div class="user-profile">
     <div class="username-dt">
-        <div class="usr-pic">
-            <img src="./assets/blankdp.png" alt="User Dp">
+        <div *ngIf="user.gender == 'Female'" class="usr-pic">
+            <img src="./assets/girl.png" alt="User Dp">
+        </div>
+        <div *ngIf="user.gender == 'Male'" class="usr-pic">
+            <img src="./assets/boy.png" alt="User Dp">
         </div>
     </div>
     <div class="user-specs">
-        <h3>John Doe</h3>
+        <h3>{{user.userName}}</h3>
         <a *ngIf="true" mat-tab-link routerLink="/dashboard/profile"><mat-icon>account_circle</mat-icon></a>
         <a mat-tab-link routerLink="/dashboard/settings"><mat-icon>settings</mat-icon> </a>
     </div>

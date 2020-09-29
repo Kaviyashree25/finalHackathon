@@ -82,6 +82,19 @@ public class UserAuthController {
         return responseEntity;
     }
 
+    @GetMapping("/api/v1/auth/user/{userId}")
+    public ResponseEntity getUserByUserId(@PathVariable(value = "userId") String userId){
+        try {
+            User user = userAuthenticationService.getUserByUserId(userId);
+            responseEntity = new ResponseEntity(user, HttpStatus.OK);
+        } catch(UserNotFoundException e){
+            responseEntity = new ResponseEntity(e.getMessage(), HttpStatus.CONFLICT);
+        } catch (Exception e) {
+            responseEntity = new ResponseEntity("Internal Server Error, Try again in some time", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
+    }
+
     @DeleteMapping("/api/v1/auth/deregister/{userId}")
     public ResponseEntity deleteUser(@PathVariable(value = "userId") String userId) {
         try {

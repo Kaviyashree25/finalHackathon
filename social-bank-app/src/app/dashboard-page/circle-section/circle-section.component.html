@@ -1,52 +1,23 @@
-<div class="cover">
-  <img src="./assets/Circle.png" alt="Group Cover">
-</div>
+<small>{{circleMessage}}</small>
+<mat-expansion-panel class='add-group-panel'>
+  <mat-expansion-panel-header>
+      <mat-panel-title>
+          Create a group
+      </mat-panel-title>
+  </mat-expansion-panel-header>
 
-<div class="group-name">
-  <h2>Demo Group</h2>
-  <h3>4 Members</h3>
-</div>
+  <div class="group-form">
+      <mat-form-field>
+          <input name="name" [(ngModel)]='circle.circleName' matInput placeholder="Name">
+      </mat-form-field>
 
-<hr />
+      <mat-form-field>
+          <textarea name="description" [(ngModel)]='circle.circleDescription' matInput placeholder="Description"></textarea>
+      </mat-form-field>
 
-<div class="tab-headers">
-  <div class="tab">
-    <button class="tablinks" (click)="openCity($event, 'About')">About</button>
-    <button class="tablinks" (click)="openCity($event, 'Posts')">Posts</button>
-    <button class="tablinks" (click)="openCity($event, 'Members')">Members</button>
+      <button mat-fab color="primary" class="add-button" (click)='addGroup()'>Create</button>
   </div>
 
-  <div id="About" class="tabcontent">
-    <h3>About</h3>
-    <p>We will have Circle Description here</p>
-  </div>
+</mat-expansion-panel>
 
-  <div id="Posts" class="tabcontent">
-    <h3>Posts</h3>
-    <p>All posts of this circle to be displayes as cards</p>
-    <mat-card class="example-card">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Shiba Inu</mat-card-title>
-        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-        <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-          bred for hunting.
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
 
-  <div id="Members" class="tabcontent">
-    <h3>Members</h3>
-    <p>All the members of this circle to be displayed</p>
-  </div>
-</div>

@@ -25,10 +25,11 @@ export class AuthServiceService {
 
   setActiveUser(userId) {
     this.activeUser = userId;
+    localStorage.setItem('activeUser', userId);
   }
 
   getActiverUser() {
-    return this.activeUser;
+    return localStorage.getItem('activeUser');
   }
 
   setBearerToken(token) {

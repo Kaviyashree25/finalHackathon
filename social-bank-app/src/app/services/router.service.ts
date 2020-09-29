@@ -6,6 +6,10 @@ import { Location } from '@angular/common';
   providedIn: 'root'
 })
 export class RouterService {
+  
+  routeToHome() {
+    this.router.navigate(['/home']);
+  }
 
   constructor(private router: Router, private location: Location) { }
 

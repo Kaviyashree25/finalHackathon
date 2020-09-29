@@ -18,8 +18,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
-  addGroup(){
-    this.circleService.addCircle(this.circle, this.userId);
-  }
+  
 
 }

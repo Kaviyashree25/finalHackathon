@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Circle } from 'src/app/model/circle';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { CircleService } from 'src/app/services/circle.service';
 
 @Component({
   selector: 'app-circle-section',
@@ -10,25 +12,30 @@ export class CircleSectionComponent implements OnInit {
 
   public circle: Circle;
   public noOfMembers: number;
-  constructor() {
+  circleMessage: string;
+
+  constructor(private circleService: CircleService, private authService: AuthServiceService) {
     this.circle = new Circle();
    }
 
   ngOnInit() {
   }
 
-  openCity(evt, cityName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
-  }
+ addGroup(){
+   console.log(this.circle);
+   this.circle.createdBy = this.authService.getActiverUser();
+   this.circle.circleId =  this.authService.getActiverUser() + Math.floor(Math.random() * 1000);
+    this.circleService.addCircle(this.circle).subscribe(
+      data => {
+        console.log(data);
+        this.circleMessage = 'Circle created Successfully!'
+      },
+      error => {
+        console.log(error);
+        this.circleMessage = error.message;
+      }
+    )
+   
+ }
 
 }

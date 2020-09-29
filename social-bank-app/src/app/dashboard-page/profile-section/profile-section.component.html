@@ -1,1 +1,64 @@
-<p>profile-section works!</p>
+<!-- Name: {{user.userName}}
+Date of Birth: {{user.dob | date:'fullDate'}}
+Gender: {{user.gender}} -->
+<form #detailsForm='ngForm'>
+    <fieldset>
+        <legend>About</legend>
+
+        <mat-form-field>
+            <div class="lr">
+                <div class="left">
+                    <i class="fa fa-user fa-2x"></i>
+                </div>
+                <div class="right">
+                    <label>Name</label>
+                    <input name="fullname" matInput #fullname='ngModel' [(ngModel)]="user.userName" readonly>
+                </div>
+            </div>
+        </mat-form-field>
+
+        <mat-form-field>
+            <div class="lr">
+                <div class="left">
+                    <i class="fa fa-venus-mars fa-2x"></i>
+                </div>
+                <div class="right">
+                    <label>Gender: </label>
+                    <input name="gender" matInput #fullname='ngModel' [(ngModel)]="user.gender" readonly>
+                </div>
+            </div>
+        </mat-form-field>
+
+        <mat-form-field>
+            <div class="lr">
+                <div class="left">
+                    <i class="fa fa-birthday-cake fa-2x"></i>
+                </div>
+                <div class="right">
+                    <label>Date of Birth: </label>
+                    <input matInput #dob='ngModel' name="dob" [(ngModel)]="user.dob" readonly>
+                    
+                </div>
+            </div>
+        </mat-form-field>
+        <button mat-raised-button class='button' routerLink="/dashboard/settings"><i class="fa fa-edit"></i> &nbsp;Edit</button>
+    </fieldset>
+</form>
+<form>
+    <fieldset>
+        <legend class="pass">Password</legend>
+
+        <mat-form-field>
+            <div class="lr">
+                <div class="left">
+                    <i class="fa fa-key fa-2x"></i>
+                </div>
+                <div class="right">
+                    <label>Password</label>
+                    <input name="password" matInput type="password" [(ngModel)]="password" readonly>
+                </div>
+            </div>
+        </mat-form-field>
+        <button mat-raised-button class='button' routerLink="/dashboard/settings"><i class="fa fa-edit"></i> &nbsp;Edit</button>
+    </fieldset>
+</form>

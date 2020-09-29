@@ -4,69 +4,75 @@
         <button class="tablinks" (click)="openTab($event, 'Password')">Change Password</button>
     </div>
 
-   <div id="Details" class="tabcontent">
+    <div id="Details" class="tabcontent">
         <h3>Details</h3>
-         <!--<form #loginForm='ngForm'>
-            <mat-form-field>
-                <input name="fullname" matInput placeholder="Enter Full Name" #fullname='ngModel'
-                    [(ngModel)]="user.userName" required>
-                <mat-error *ngIf='fullname.invalid && fullname.touched'>
-                    <small class='error-message' *ngIf='fullname.invalid'>Full Name is mandatory</small>
-                </mat-error>
-            </mat-form-field>
+        <small>{{userDetailsMessage}}</small>
+        <main>
+            <form #loginForm='ngForm'>
+                <mat-form-field>
+                    <input name="fullname" matInput placeholder="Enter Full Name" #fullname='ngModel'
+                        [(ngModel)]="user.userName" required>
+                    <mat-error *ngIf='fullname.invalid && fullname.touched'>
+                        <small class='error-message' *ngIf='fullname.invalid'>Full Name is mandatory</small>
+                    </mat-error>
+                </mat-form-field>
 
-            <mat-label>
-                <label>Gender: </label>
-                <mat-radio-group aria-label="Select an option" #username='ngModel' name="gender"
-                    [(ngModel)]="user.gender" required>
-                    <mat-radio-button value="Male">Male</mat-radio-button>
-                    <mat-radio-button value="Female">Female</mat-radio-button>
-                </mat-radio-group>
-            </mat-label>
+                <mat-label>
+                    <label>Gender: </label>
+                    <mat-radio-group aria-label="Select an option" #username='ngModel' name="gender"
+                        [(ngModel)]="user.gender" required>
+                        <mat-radio-button value="Male">Male</mat-radio-button>
+                        <mat-radio-button value="Female">Female</mat-radio-button>
+                    </mat-radio-group>
+                </mat-label>
 
-            <mat-form-field>
-                <input matInput [matDatepicker]="dob" placeholder="Date of Birth" #dob='ngModel' name="dob"
-                    [(ngModel)]="user.dob" required>
-                <mat-datepicker-toggle matSuffix [for]="dob" class="dp"></mat-datepicker-toggle>
-                <mat-datepicker #dob [touchUi]="true" class="dp"></mat-datepicker>
-                <mat-error *ngIf="dob.touched && dob.invalid">
-                    <small *ngIf="dob?.errors.required" class='error-message'>Date of Birth is mandatory</small>
-                </mat-error>
-            </mat-form-field>
+                <mat-form-field>
+                    <input matInput [matDatepicker]="dob" placeholder="Date of Birth" #dob='ngModel' name="dob"
+                        [(ngModel)]="user.dob" required>
+                    <mat-datepicker-toggle matSuffix [for]="dob" class="dp"></mat-datepicker-toggle>
+                    <mat-datepicker #dob [touchUi]="true" class="dp"></mat-datepicker>
+                    <mat-error *ngIf="dob.touched && dob.invalid">
+                        <small *ngIf="dob?.errors.required" class='error-message'>Date of Birth is mandatory</small>
+                    </mat-error>
+                </mat-form-field>
 
-           <button class='button' [disabled]="loginForm.invalid" (click)="register()">Update</button>
-        </form>-->
-    </div> 
+                <button class='button' [disabled]="loginForm.invalid" (click)="updateDetails()">Update</button>
+            </form>
+        </main>
+    </div>
 
     <div id="Password" class="tabcontent">
         <h3>Password Change</h3>
-        <p>A form to change </p>
-        <!-- <form #loginForm='ngForm'>
-            <mat-form-field>
-                <input matInput type="password" name='oldpassword' placeholder="Enter Password" #password='ngModel'
-                    [(ngModel)]="user.password" required>
-                <mat-error *ngIf='password.invalid && password.touched'>
-                <small class='error-message' *ngIf='password.invalid'>Password is mandatory </small>
-            </mat-error>
-            </mat-form-field>
+        <small>{{passwordMessage}}</small>
+        <main>
+            <form #PasswordForm='ngForm'>
+                <mat-form-field>
+                    <input matInput type="password" name='oldpassword' placeholder="Enter Old Password" #password='ngModel' ngModel required>
+                    <mat-error *ngIf='password.invalid && password.touched'>
+                        <small class='error-message' *ngIf='password.invalid'>Old Password is mandatory </small>
+                    </mat-error>
+                </mat-form-field>
 
-            <mat-form-field>
-                <input matInput type="password" name='newpassword' placeholder="Enter Password" #newpassword='ngModel'
-                    [(ngModel)]="user.password" required>
-                <mat-error *ngIf='newpassword.invalid && newpassword.touched'>
-                <small class='error-message' *ngIf='newpassword.invalid'>Password is mandatory </small>
-            </mat-error>
-            </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="password" name='newpassword' placeholder="Enter New Password"
+                        #newpassword='ngModel' ngModel required>
+                    <mat-error *ngIf='newpassword.invalid && newpassword.touched'>
+                        <small class='error-message' *ngIf='newpassword.invalid'>New Password is mandatory </small>
+                    </mat-error>
+                </mat-form-field>
 
-            <mat-form-field>
-                <input matInput type="password" name='confirmpassword' placeholder="Enter Password" #confirmpassword='ngModel'
-                    [(ngModel)]="user.password" required>
-                <mat-error *ngIf='confirmpassword.invalid && confirmpassword.touched'>
-                <small class='error-message' *ngIf='confirmpassword.invalid'>Password is mandatory </small>
-            </mat-error>
-            </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="password" name='confirmpassword' placeholder="Re-Enter New Password"
+                        #confirmpassword='ngModel' ngModel required>
+                    <mat-error *ngIf='confirmpassword.invalid && confirmpassword.touched'>
+                        <small class='error-message' *ngIf='confirmpassword.invalid'>Confirming Password is mandatory </small>
+                    </mat-error>
+                </mat-form-field>
 
-            <button class='button' [disabled]="loginForm.invalid" (click)="changePassword()">Change</button>
-        </form> -->
+                <button mat-raised-button color="primary" class='button' [disabled]="loginForm.invalid" (click)="changePassword(PasswordForm.value)">Change</button>
+            </form>
+            
+        </main>
+        
     </div>
 </div>

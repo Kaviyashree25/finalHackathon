@@ -1,10 +1,10 @@
 <app-info-tab></app-info-tab>
 <div class="tab-headers">
     <div class="tab">
-        <button mat-raised-button class="tablinks"  routerLink="circles" (click)="openCity($event, 'About')">My Groups</button>
-        <button mat-raised-button class="tablinks"  routerLink="circles" (click)="openCity($event, 'About')">Explore Groups</button>
-        <button mat-raised-button class="tablinks" routerLink="posts" (click)="openCity($event, 'Posts')">Posts</button>
-        <button mat-raised-button class="tablinks" routerLink="products" (click)="openCity($event, 'Members')">Products</button>
+        <button mat-raised-button class="tablinks"  routerLink="circles" >My Groups</button>
+        <button mat-raised-button class="tablinks"  routerLink="circle/explore" >Explore Groups</button>
+        <button mat-raised-button class="tablinks" routerLink="posts" >Posts</button>
+        <button mat-raised-button class="tablinks" routerLink="products">Products</button>
         
       </div>
       
@@ -42,24 +42,3 @@
         <p>All the members of this circle to be displayed</p>
       </div> -->
 </div> 
-
-<mat-expansion-panel class='add-group-panel'>
-    <mat-expansion-panel-header>
-        <mat-panel-title>
-            Create a group
-        </mat-panel-title>
-    </mat-expansion-panel-header>
-
-    <div class="group-form">
-        <mat-form-field>
-            <input name="name" [(ngModel)]='circle.circleName' matInput placeholder="Name">
-        </mat-form-field>
-
-        <mat-form-field>
-            <textarea name="description" [(ngModel)]='circle.circleDescription' matInput placeholder="Description"></textarea>
-        </mat-form-field>
-
-        <button mat-fab color="primary" class="add-button" (click)='addGroup()'>Create</button>
-    </div>
-
-</mat-expansion-panel>

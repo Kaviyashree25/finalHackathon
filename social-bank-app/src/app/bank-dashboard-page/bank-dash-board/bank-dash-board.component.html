@@ -1,2 +1,74 @@
-<app-header></app-header>
-<p>bank-dash-board works!</p>
+<section class="bankHome">
+  <section class="mask">
+    <app-header></app-header>
+    <div id="home"><a (click)="display=false"> Product Home<mat-icon>home</mat-icon></a></div>
+    <form #productForm='ngForm'>
+      <input name="productId" matInput placeholder="Choose product by Id" #productId='ngModel' ngModel required>
+      <button mat-raised-button class='button' [disabled]="productForm.invalid"
+        (click)="find(productForm.value)">Find</button>
+      <button mat-raised-button class='button1' (click)="showAdd()">ADD PRODUCT</button>
+      <button mat-raised-button class='button2' (click)="showDelete()">DELETE PRODUCT</button>
+    </form>
+    <div *ngIf="displayDelete">
+      <form #deleteForm='ngForm' class="form1">
+        <input name="productId" matInput placeholder="delete product by Id" #deleteId='ngModel' ngModel required>
+        <button mat-raised-button class='button' [disabled]="deleteForm.invalid"
+          style="background-color: maroon;color: white;" (click)="delete(deleteForm.value)">Submit</button>
+      </form>
+    </div>
+    <div *ngIf="displayAdd" class="form1">
+      <form #addForm='ngForm'>
+        <input name="productId" matInput placeholder="Enter Id" #productId='ngModel' ngModel required>
+        <input name="productName" matInput placeholder="Give Product Name" #productName='ngModel' ngModel required>
+        <input name="description" matInput placeholder="Give Description" #description='ngModel' ngModel required>
+        <button mat-raised-button class='button' [disabled]="addForm.invalid"
+          style="background-color: green;color: white;" (click)="add(addForm.value)">Submit</button>
+      </form>
+    </div>
+
+    <mat-tab-group class="list" #tabGroup>
+      <mat-tab *ngIf="!display" label="Products">
+        <section class="country-page">
+          <div *ngFor="let product of productList" class="stand">
+            <a (click)="tabGroup.selectedIndex=1" (click)="find(product)">
+              <mat-card class="card">
+                <h1>{{product.productName}}</h1>
+                <mat-card-header>
+                  <mat-card-title>Product Id: {{product.productId}}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  {{product.description}}
+                </mat-card-content>
+              </mat-card>
+            </a>
+          </div>
+        </section>
+      </mat-tab>
+      <mat-tab *ngIf="display" label="Users">
+        <h2>Total Users following product</h2>
+        <h3>
+          <div [innerHTML]="userList.length.toString()"></div>
+        </h3>
+        <h2> IDs</h2>
+        <div *ngFor="let user of userList">
+          <div class="data"> {{user}} </div>
+        </div>
+      </mat-tab>
+      <mat-tab *ngIf="display" label="Update">
+        <div *ngIf="display" class="form1">
+          <form #updateForm='ngForm'>
+            <input name="productId" matInput placeholder="{{getProdId()}}" #productId='ngModel' value="{{getProdId()}}"
+              ngModel readonly>
+            <input name="productName" matInput placeholder="Give Product Name" #productName='ngModel' ngModel required>
+            <input name="description" matInput placeholder="Give Description" #description='ngModel' ngModel required>
+            <button mat-raised-button class='button'
+              style="background-color: rgb(243, 217, 104);color: white;"
+              (click)="update(updateForm.value)">Update</button>
+          </form>
+        </div>
+      </mat-tab>
+      {{productId}}
+    </mat-tab-group>
+    <mat-divider></mat-divider>
+  </section>
+</section>

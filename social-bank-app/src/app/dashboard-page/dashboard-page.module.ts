@@ -16,6 +16,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PostSectionComponent } from './post-section/post-section.component';
@@ -27,12 +30,14 @@ import { RouterModule } from '@angular/router';
 import { HeaderFooterModule } from '../header-footer/header-footer.module';
 import { NavigationComponent } from './navigation/navigation.component';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { InfoTabComponent } from './info-tab/info-tab.component'
+import { InfoTabComponent } from './info-tab/info-tab.component';
+import { CircleProfileComponent } from './circle-profile/circle-profile.component';
+import { CircleExploreComponent } from './circle-explore/circle-explore.component'
 
 
 
 @NgModule({
-  declarations: [DashboardComponent, PostSectionComponent, CircleSectionComponent, ProfileSectionComponent, SettingsSectionComponent, ProductSectionComponent, NavigationComponent, InfoTabComponent],
+  declarations: [DashboardComponent, PostSectionComponent, CircleSectionComponent, ProfileSectionComponent, SettingsSectionComponent, ProductSectionComponent, NavigationComponent, InfoTabComponent, CircleProfileComponent, CircleExploreComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -54,7 +59,10 @@ import { InfoTabComponent } from './info-tab/info-tab.component'
     MatIconModule,
     MatTooltipModule,
     MatDividerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     DashboardComponent,

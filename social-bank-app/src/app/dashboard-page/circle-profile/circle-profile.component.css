@@ -1,3 +1,25 @@
+.cover {
+    width: 100%;
+    margin-top: 0;
+}
+.cover img {
+    width: 100%;
+    max-height: 35vh;
+}
+.example-card {
+    max-width: 400px;
+}
+  
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+hr {
+    height: 1px;
+    background-color: black;
+}
+
 .tab {
     overflow: hidden;
     border: 1px solid #ccc;
@@ -33,37 +55,3 @@
     border: 1px solid #ccc;
     border-top: none;
   }
-
-  main{
-    height: 100%;
-    width: 100%;
-    padding: 2em;
-}
-
-form{
-    width: 40vw;
-    margin: 10vh auto;
-    box-shadow: 2px 2px 10px gray;
-    padding : 2em;
-    display: flex;
-    flex-direction: column;
-}
-
-input{
-    font-size: 1em;
-    width: 90%;
-    margin: 1em;
-}
-
-.button{
-    width:5vw;
-    margin-left: 30vw;
-    border-radius: 5px;
-}
-
-.button:hover{
-    box-shadow: 2px 2px 10px rgb(236, 190, 65);;
-}
-.error-message{
-    color: red;
-}

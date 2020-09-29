@@ -10,6 +10,8 @@ import { SettingsSectionComponent } from './dashboard-page/settings-section/sett
 import { LoginComponent } from './forms/login/login.component';
 import { HeroPageComponent } from './home-page/hero-page/hero-page.component';
 import { BankLoginComponent } from './forms/bank-login/bank-login.component';
+import { CircleProfileComponent } from './dashboard-page/circle-profile/circle-profile.component';
+import { CircleExploreComponent } from './dashboard-page/circle-explore/circle-explore.component';
 
 
 
@@ -53,6 +55,15 @@ const routes: Routes = [
       {
         path: 'settings',
         component: SettingsSectionComponent,
+      },
+      
+      {
+        path: 'circle/profile',
+        component: CircleProfileComponent,
+      },
+      {
+        path: 'circle/explore',
+        component: CircleExploreComponent,
       },
       {
         path: '',

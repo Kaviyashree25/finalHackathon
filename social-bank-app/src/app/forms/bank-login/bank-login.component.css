@@ -1,5 +1,5 @@
 main{
-    height: 82%;
+    height: 100%;
     width: 100%;
     padding: 2em;
     background-image: url('/assets/login_bg.jpg');
@@ -63,3 +63,17 @@ button{
     justify-content: space-around;
     margin-top: 2vh;
 }
+
+::ng-deep .bank-login-form-input.mat-focused .mat-form-field-ripple {
+    background-color: black !important;
+  }
+
+::ng-deep .bank-login-form-input .mat-form-field-underline {
+    background-color: black !important;
+  }
+
+::ng-deep .mat-form-field-label {
+
+    color: black !important;
+    /* font-size: 20px; */
+} 

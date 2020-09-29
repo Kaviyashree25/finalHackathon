@@ -3,7 +3,7 @@
 }
 
 .registration{
-    margin: auto;
+    /* margin: auto; */
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -11,22 +11,27 @@
 
 .register-form
 {
-    margin-top: 20vh;
+    margin-top: 0vh;
 }
 form
 {
     display: flex;
     flex-direction: column;
-    padding: 2em;  
-    height: 50vh;
-    width: 70vh;
+    padding-top: 1em;  
+    padding-bottom: 3em;
+    padding-left: 2em;
+    padding-right: 2em;
+    height: 60vh;
+    width: 80vh;
     border: 2px solid goldenrod;  
     border-radius: 1em;
 }
 
 ::placeholder{
-    background-color: goldenrod;
-    opacity: 0.5;
+    /* background-color: goldenrod;
+    opacity: 0.1; */
+    color: goldenrod;
+    
 }
 
 mat-radio-group
@@ -42,6 +47,8 @@ mat-radio-group
     padding: 2vh;
     border-radius: 1em;
     font-weight: bolder;
+    margin-top: 1em;
+    border: black;
 }
 
 mat-radio-button
@@ -56,13 +63,48 @@ button{
     border-radius: 1em;
     font-weight: bolder;
     font-size: large;
+    margin-top: 1em;
+    border: black;
 }
 
 ::ng-deep .dp {
-   
     padding-left: 5px;
-      
 }
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: goldenrod !important;
+  }
+
+::ng-deep .mat-form-field .mat-form-field-underline {
+    background-color: goldenrod !important;
+  }
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-outer-circle{
+    border-color:goldenrod; 
+  }
+  
+::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+    border-color:goldenrod; 
+  }
+  
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle{
+    color:rgb(66, 134, 244);
+    background-color: goldenrod ;
+  }
+  
+::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+      background-color:goldenrod;
+  }
+
+::ng-deep .mat-datepicker-toggle {
+    color:goldenrod !important;
+   }
+
+
+::ng-deep .mat-form-field-label {
+      color:goldenrod !important;
+      font-size: 20px;
+} 
 
 
 

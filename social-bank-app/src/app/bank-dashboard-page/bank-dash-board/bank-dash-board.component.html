@@ -57,8 +57,7 @@
       <mat-tab *ngIf="display" label="Update">
         <div *ngIf="display" class="form1">
           <form #updateForm='ngForm'>
-            <input name="productId" matInput placeholder="{{getProdId()}}" #productId='ngModel' value="{{getProdId()}}"
-              ngModel readonly>
+            <input name="productId" matInput placeholder="{{getProdId()}}" #productId='ngModel' value="{{getProdId()}}" readonly ngModel>
             <input name="productName" matInput placeholder="Give Product Name" #productName='ngModel' ngModel required>
             <input name="description" matInput placeholder="Give Description" #description='ngModel' ngModel required>
             <button mat-raised-button class='button'

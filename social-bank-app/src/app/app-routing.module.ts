@@ -12,6 +12,7 @@ import { HeroPageComponent } from './home-page/hero-page/hero-page.component';
 import { BankLoginComponent } from './forms/bank-login/bank-login.component';
 import { CircleProfileComponent } from './dashboard-page/circle-profile/circle-profile.component';
 import { CircleExploreComponent } from './dashboard-page/circle-explore/circle-explore.component';
+import { CircleUpdateComponent } from './dashboard-page/circle-update/circle-update.component';
 
 
 
@@ -56,7 +57,10 @@ const routes: Routes = [
         path: 'settings',
         component: SettingsSectionComponent,
       },
-      
+      {
+        path: 'circle/update',
+        component: CircleUpdateComponent,
+      },
       {
         path: 'circle/profile',
         component: CircleProfileComponent,

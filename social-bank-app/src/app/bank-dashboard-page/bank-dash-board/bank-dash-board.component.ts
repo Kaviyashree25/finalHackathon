@@ -87,6 +87,7 @@ export class BankDashBoardComponent implements OnInit {
     this.display = false;
   }
   update(formvalue) {
+    formvalue.productId=this.productId;
     this.prodService.updateProduct(formvalue).subscribe(
       data => {
         let index = this.productList.indexOf(formvalue);

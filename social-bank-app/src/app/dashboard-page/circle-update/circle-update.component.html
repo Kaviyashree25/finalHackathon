@@ -1,0 +1,25 @@
+<h2>Update Circle Details</h2>
+<small>{{circleMessage}}</small>
+
+<div class="group-form">
+    <form #updateForm='ngForm'>
+        <mat-form-field>
+            <input name="id" [(ngModel)]='circle.circleId' matInput placeholder="Id" readonly>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <input name="name" [(ngModel)]='circle.circleName' matInput placeholder="Name">
+        </mat-form-field>
+
+        <mat-form-field>
+            <textarea name="description" [(ngModel)]='circle.circleDescription' matInput
+                placeholder="Description"></textarea>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input name="createdBy" [(ngModel)]='circle.createdBy' matInput placeholder="Created By" readonly>
+        </mat-form-field>
+
+        <button mat-fab color="primary" class="add-button" (click)='updateGroup()'>Update</button>
+    </form>
+</div>

@@ -55,4 +55,10 @@ export class ProductServiceService {
       }
     );
   }
+  follow(product:Product,userId:string){
+    return this.httpClient.post<Product>(this.url2+`/${userId}`,product);
+  }
+  unfollow(productId:string,userId:string){
+    return this.httpClient.delete<Product>(this.url2+`/${productId}/${userId}`);
+  }
 }

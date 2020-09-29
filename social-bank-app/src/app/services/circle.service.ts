@@ -8,12 +8,13 @@ import { AuthServiceService } from './auth-service.service';
   providedIn: 'root'
 })
 export class CircleService {
+  
 
   public circles: Circle[] = [];
   public subject = new BehaviorSubject<Array<Circle>>(this.circles);
   public circle: Circle = new Circle();
   public circleUrl = 'http://localhost:8765/bank-circle-service/api/v1/bank/circles';
-  
+
   constructor(private httpClient: HttpClient, private authService: AuthServiceService) { }
 
   getAllCircles(): Observable<any> {
@@ -26,5 +27,13 @@ export class CircleService {
 
   getCirclebyCircleId(circleId) {
     return this.httpClient.get<any>(`${this.circleUrl}/${circleId}`);
+  }
+
+  deleteCircle(group: Circle) {
+    return this.httpClient.delete<any>(`${this.circleUrl}/${group.createdBy}/${group.circleId}`);
+  }
+
+  updateCircle(group: Circle) {
+    return this.httpClient.put<any>(`${this.circleUrl}/${group.createdBy}/${group.circleId}`, group);
   }
 }

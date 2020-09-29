@@ -32,12 +32,13 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { InfoTabComponent } from './info-tab/info-tab.component';
 import { CircleProfileComponent } from './circle-profile/circle-profile.component';
-import { CircleExploreComponent } from './circle-explore/circle-explore.component'
+import { CircleExploreComponent } from './circle-explore/circle-explore.component';
+import { CircleUpdateComponent } from './circle-update/circle-update.component'
 
 
 
 @NgModule({
-  declarations: [DashboardComponent, PostSectionComponent, CircleSectionComponent, ProfileSectionComponent, SettingsSectionComponent, ProductSectionComponent, NavigationComponent, InfoTabComponent, CircleProfileComponent, CircleExploreComponent],
+  declarations: [DashboardComponent, PostSectionComponent, CircleSectionComponent, ProfileSectionComponent, SettingsSectionComponent, ProductSectionComponent, NavigationComponent, InfoTabComponent, CircleProfileComponent, CircleExploreComponent, CircleUpdateComponent],
   imports: [
     CommonModule,
     RouterModule,

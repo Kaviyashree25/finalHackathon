@@ -1,5 +1,25 @@
 <img src="/assets/productsPage.jpg" alt="picture" class="cover">
-<h1>Products you follow</h1>
-<div *ngFor="let product of products">
-    {{product.productId}}
+<section class="flexbox">
+    <div class="sec1">
+        <h1>All Products</h1>
+        <div *ngFor="let product of allProducts" class="prod">
+            <img src="/assets/picture1.png" alt="image" class="logo">
+            {{product.productName}}
+            <hr>
+            <div class="content">{{product.description}}</div>
+            <button mat-raised-button class='button'
+                  style="background-color: green;color: white;" (click)="follow(product)">Follow</button>
+        </div>
+        </div>
+    <div class="sec2">
+    <h1>Products you follow</h1>
+<div *ngFor="let product of products" class="prod">
+    <img src="/assets/picture1.png" alt="image" class="logo">
+    {{product.productName}}
+    <hr>
+    <div class="content">{{product.description}}</div>
+    <button mat-raised-button class='button'
+          style="background-color: maroon;color: white;" (click)="unfollow(product)">Unfollow</button>
 </div>
+</div>
+</section>

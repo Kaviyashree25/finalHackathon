@@ -5,3 +5,34 @@
 h1{
     padding-left: 2vw;
 }
+.logo{
+    max-width: 7vw;
+    padding-left: 2vw;
+}
+.name{
+    min-width: 10vw;
+}
+.prod{
+    font-size: large;
+}
+.button{
+    margin-left:4vw ;
+    margin-top: 2vh;
+    margin-bottom: 5vh;
+}
+.flexbox{
+    display: flex;
+    justify-content: space-between;
+}
+.content{
+    margin-left: 4vw;
+    color: rgb(0, 0, 0,0.5);
+}
+.sec1{
+    margin-left: 5vw;
+    width: 40%;
+}
+.sec2{
+    margin-right: 5vw;
+    width: 40%;
+}

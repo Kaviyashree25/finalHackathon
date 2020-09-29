@@ -17,7 +17,17 @@ services:
     build: BankService/
     restart: always
     ports:
-      - 9200:9200
+      - 9400:9400
+    depends_on:
+      - mongoDatabase
+    network_mode: host
+
+  bankcircleservice:
+    image: bankcircleservice
+    build: BankCircleService/
+    restart: always
+    ports:
+      - 9700:9700
     depends_on:
       - mongoDatabase
     network_mode: host
@@ -37,7 +47,7 @@ services:
     build: PostService/
     restart: always
     ports:
-      - 9400:9400
+      - 9200:9200
     depends_on:
       - mongoDatabase
     network_mode: host
@@ -52,25 +62,15 @@ services:
       - mongoDatabase
     network_mode: host
 
-    userservice:
-      image: userservice
-      build: UserService/
-      restart: always
-      ports:
-        - 9600:9600
-      depends_on:
-        - mongoDatabase
-      network_mode: host
-
-    bankcircleservice:
-      image: bankcircleservice
-      build: BankCircleService/
-      restart: always
-      ports:
-        - 9700:9700
-      depends_on:
-        - mongoDatabase
-      network_mode: host
+  userservice:
+    image: userservice
+    build: UserService/
+    restart: always
+    ports:
+      - 9600:9600
+    depends_on:
+      - mongoDatabase
+    network_mode: host
 
   zuulapigateway:
     image: zuulapigateway
@@ -90,12 +90,12 @@ services:
       - 8761:8761
     network_mode: host
 
-#  socialbankapp:
-#    image: socialbankapp
-#    build: social-bank-app/
-#    ports:
-#      - 8080:8080
-#    network_mode: host
+  socialbankapp:
+    image: socialbankapp
+    build: social-bank-app/
+    ports:
+      - 8080:8080
+    network_mode: host
 
   mysqlDatabase:
     image: mysql:5.5

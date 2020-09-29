@@ -10,6 +10,7 @@ import { ProductServiceService } from 'src/app/services/product-service.service'
 })
 export class ProductSectionComponent implements OnInit {
   products:Product[];
+  allProducts:Product[];
   user:string;
   constructor(private prodService :ProductServiceService,private authService:AuthServiceService) { 
     this.user=this.authService.getActiverUser();
@@ -25,7 +26,42 @@ export class ProductSectionComponent implements OnInit {
         console.error();
         
       }
-    )
+    );
+    this.prodService.getAllProduct().subscribe(
+      data=>{
+        this.allProducts=data;
+      },
+      error=>{
+        console.error();  
+      }
+    );
+  }
+  unfollow(product){
+    this.prodService.unfollow(product.productId,this.user).subscribe(
+      data=>{
+        console.log(data);
+        let index=this.products.indexOf(data);
+        this.products.splice(index,1);
+        this.prodService.subject1.next(this.products);
+      },
+      error=>{
+        console.error(); 
+      }
+    );
+  }
+  follow(product){
+    console.log(this.user);
+    console.log(product);
+    this.prodService.follow(product,this.user).subscribe(
+      data=>{
+        this.products.push(data);
+        this.prodService.subject.next(this.products);
+      },
+      error=>{
+        console.error();
+        
+      }
+    );
   }
 
 }

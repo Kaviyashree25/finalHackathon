@@ -1,0 +1,16 @@
+.example-card {
+    max-width: 400px;
+    margin: 3%
+  }
+  
+  .example-header-image {
+    background-image: url('/assets/blankdp.png');
+    background-size: cover;
+  }
+  
+  .groupCard{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }

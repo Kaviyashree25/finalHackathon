@@ -11,6 +11,10 @@ export class RouterService {
     this.router.navigate(['/home']);
   }
 
+  routeToMyGroup(){
+    this.router.navigate(['/dashboard/circles'])
+  }
+
   constructor(private router: Router, private location: Location) { }
 
   routeToDashboard() {

@@ -14,6 +14,9 @@ export class RouterService {
   routeToMyGroup(){
     this.router.navigate(['/dashboard/circles'])
   }
+  routeToMyPost(){
+    this.router.navigate(['/dashboard/posts'])
+  }
   routeToRequests(){
     this.router.navigate(['/dashboard/circleRequest']);
   }

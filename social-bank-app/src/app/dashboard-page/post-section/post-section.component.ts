@@ -56,6 +56,7 @@ export class PostSectionComponent implements OnInit {
         this.postMessage = error.message;
       }
     );
+    location.reload();
   }
 
   deletePost(post) {
@@ -75,8 +76,8 @@ export class PostSectionComponent implements OnInit {
   sendPost(post:Post) {
     post.userId = this.userId;
     console.log(post);
-
     this.dataService.sendDataToOtherComponent(post);
+    
   }
 }
 

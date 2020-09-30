@@ -14,6 +14,8 @@ import { CircleProfileComponent } from './dashboard-page/circle-profile/circle-p
 import { CircleExploreComponent } from './dashboard-page/circle-explore/circle-explore.component';
 import { CircleUpdateComponent } from './dashboard-page/circle-update/circle-update.component';
 import { CircleRequestsComponent } from './dashboard-page/circle-requests/circle-requests.component';
+import { UpdatePostComponent } from './dashboard-page/update-post/update-post.component';
+import { CanActivateGuard } from './can-activate.guard';
 
 
 
@@ -32,15 +34,21 @@ const routes: Routes = [
   },
   {
     path: 'bankHome',
-    component: BankDashBoardComponent
+    component: BankDashBoardComponent,
+    canActivate:[CanActivateGuard]
   },
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate:[CanActivateGuard],
     children: [
       {
         path: 'posts',
         component: PostSectionComponent,
+      },
+      {
+        path: 'post/update',
+        component: UpdatePostComponent,
       },
       {
         path: 'circles',

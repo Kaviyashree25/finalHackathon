@@ -2,11 +2,11 @@
     <Section class="mask">
         <mat-toolbar id="title">
                 <img src="/assets/logo.png" alt="logo" id="logo">
-                <span>THE SOCIAL BANK</span>
+                <span class="heading">THE SOCIAL BANK</span>
                 <span class="fill-remaining-space"></span>
             <nav mat-tab-nav-bar id="bar3">
-                <a *ngIf="true" mat-tab-link routerLink="/login"> Member Login </a>
-                <a mat-tab-link routerLink="/bankLogin">Bank Login </a>
+                <a *ngIf="true" mat-tab-link routerLink="/login" matTooltip="Login" class="login"> Member Login </a>
+                <a mat-tab-link routerLink="/bankLogin" matTooltip="Login" class="login">Bank Login </a>
             </nav> 
         </mat-toolbar>
 
@@ -16,8 +16,9 @@
             </mat-grid-tile>
             <mat-grid-tile [colspan]= "5">
                 <div id="tile">
-                    <div>A Social Bank built on </div>
-                    <div id="secondline">Trust, Control & Love... </div>
+                     <div>A Social Bank built on </div>
+                    <!-- <div id="secondline">Trust, Control & Love... </div> -->
+                    <span id="secondline" class="text-change"></span>
                 </div>
             </mat-grid-tile>
         </mat-grid-list>

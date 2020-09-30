@@ -1,0 +1,9 @@
+<div class="page">
+<h1>Circle Requests</h1>
+<div *ngFor="let circle of circles" id="flex">
+    <img src="/assets/circleLogo.jpg" id="logo" alt="circllogo">
+    <h2>{{circle.circleName}}</h2>
+    <button mat-raised-button   style="background-color: green;color: white;" (click)="accept(circle)" id="accept">Accept</button>
+    <button mat-raised-button  style="background-color: maroon;color: white;" (click)="reject(circle)" id="reject">Reject</button>
+</div>
+</div>

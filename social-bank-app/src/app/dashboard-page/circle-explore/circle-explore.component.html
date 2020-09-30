@@ -1,5 +1,33 @@
-<small>{{circleMessage}}</small>
-<h2>Trending Groups</h2>
+<div class="page"><small>{{circleMessage}}</small>
+<h2>Groups you are a part of</h2>
+<div class="groupCard">
+    <mat-card class="example-card" *ngFor="let group of otherCircles">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{group.circleName}}</mat-card-title>
+        <mat-card-subtitle>Created By: {{group.createdBy}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="./assets/users.jpg" alt="Users">
+      <mat-card-content>
+        <p>
+          {{group.circleDescription}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button routerLink="/dashboard/circle/profile" (click)="sendCircle(group)">View</button>
+        <button mat-button (click)="deleteCircle(group)" *ngIf="check(group)">leave</button>
+        <button mat-button routerLink="/dashboard/circle/update" *ngIf="!check(group)" (click)="sendCircle(group)">Update</button>
+        <button mat-button  (click)="add(group)">Add a friend</button>
+        <div *ngIf="display">
+          <form #friendForm='ngForm' class="form1">
+            <input name="userId" matInput placeholder="Send request to friend by their Id" #userId='ngModel' ngModel required>
+            <button mat-raised-button class='button' [disabled]="friendForm.invalid"
+              style="background-color: green;color: white;" (click)="addfriend(friendForm.value)">Add</button>
+          </form>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </div><h2>Explore Groups</h2>
 <div class="groupCard">
     <mat-card class="example-card" *ngFor="let group of newCircleList">
         <mat-card-header>
@@ -18,4 +46,5 @@
             <!-- <button mat-button (click)="deleteCircle(group)">Delete</button> -->
         </mat-card-actions>
     </mat-card>
+</div>
 </div>

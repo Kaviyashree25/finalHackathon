@@ -131,7 +131,6 @@
 		<module>UserAuthentication-Service</module>
         <module>UserService</module>
 		<module>BankCircleService</module>
-        <module>BankCircleService</module>
     </modules>
 
 </project>

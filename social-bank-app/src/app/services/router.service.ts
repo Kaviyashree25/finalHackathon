@@ -14,7 +14,9 @@ export class RouterService {
   routeToMyGroup(){
     this.router.navigate(['/dashboard/circles'])
   }
-
+  routeToRequests(){
+    this.router.navigate(['/dashboard/circleRequest']);
+  }
   constructor(private router: Router, private location: Location) { }
 
   routeToDashboard() {

@@ -1,0 +1,20 @@
+#logo{
+    max-width: 7vw;
+}
+#flex{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+}
+#reject, #accept{
+    height: 6vh;
+}
+
+#reject{
+    margin-right: 40vw;
+}
+.page{
+    background-image: url("/assets/mainBg.jpg");
+    min-height: 100vh;
+    height: 100%;
+  }

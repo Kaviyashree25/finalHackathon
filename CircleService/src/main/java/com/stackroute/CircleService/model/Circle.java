@@ -51,7 +51,7 @@ public class Circle {
     @Override
     public String toString() {
         return "Circle{" +
-                ", circleId='" + circleId + '\'' +
+                "circleId='" + circleId + '\'' +
                 ", circleName='" + circleName + '\'' +
                 ", circleDescription='" + circleDescription + '\'' +
                 ", createdBy='" + createdBy + '\'' +

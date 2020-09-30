@@ -4,47 +4,47 @@
             <mat-form-field>
                 <input name="fullname" matInput placeholder="Enter Full Name" #fullname='ngModel'
                     [(ngModel)]="user.userName" required>
-                <!-- <mat-error *ngIf='fullname.invalid && fullname.touched'>
+                <mat-error *ngIf='fullname.invalid && fullname.touched'>
                     <small class='error-message' *ngIf='fullname.invalid'>Full Name is mandatory</small>
-                </mat-error> -->
+                </mat-error>
             </mat-form-field>
 
             <mat-label>
-                <!-- <label>Gender: </label> -->
-                <mat-radio-group aria-label="Select an option" #username='ngModel' name = "gender" [(ngModel)]="user.gender" required>
+                <label>Gender: </label>
+                <mat-radio-group aria-label="Select an option" #username='ngModel' name="gender"
+                    [(ngModel)]="user.gender" required>
                     <mat-radio-button value="Male">Male</mat-radio-button>
                     <mat-radio-button value="Female">Female</mat-radio-button>
                 </mat-radio-group>
             </mat-label>
 
             <mat-form-field>
-                <input matInput [matDatepicker]="dob" placeholder="Date of Birth" #dob='ngModel' name="dob" [(ngModel)]="user.dob"
-                    required>
+                <input matInput [matDatepicker]="dob" placeholder="Date of Birth" #dob='ngModel' name="dob"
+                    [(ngModel)]="user.dob" required>
                 <mat-datepicker-toggle matSuffix [for]="dob" class="dp"></mat-datepicker-toggle>
                 <mat-datepicker #dob [touchUi]="true" class="dp"></mat-datepicker>
-                <!-- <mat-error *ngIf="dob.touched && dob.invalid">
+                <mat-error *ngIf="dob.touched && dob.invalid">
                     <small *ngIf="dob?.errors.required" class='error-message'>Date of Birth is mandatory</small>
-                </mat-error> -->
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field>
                 <input name="username" matInput placeholder="Enter Username" #username='ngModel'
                     [(ngModel)]="user.userId" required>
-                <!-- <mat-error *ngIf='username.invalid && username.touched'>
+                <mat-error *ngIf='username.invalid && username.touched'>
                     <small class='error-message' *ngIf='username.invalid'>User Name is mandatory</small>
-                </mat-error> -->
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field>
                 <input matInput type="password" name='password' placeholder="Enter Password" #password='ngModel'
                     [(ngModel)]="user.password" required>
-                <!-- <mat-error *ngIf='password.invalid && password.touched'>
+                <mat-error *ngIf='password.invalid && password.touched'>
                     <small class='error-message' *ngIf='password.invalid'>Password is mandatory </small>
-                </mat-error> -->
+                </mat-error>
             </mat-form-field>
 
-            <button class='button' [disabled]="loginForm.invalid"
-                (click)="register()">REGISTER NOW!</button>
+            <button class='button' [disabled]="loginForm.invalid" (click)="register()">REGISTER NOW!</button>
         </form>
     </main>
 </div>

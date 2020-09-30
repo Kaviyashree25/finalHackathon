@@ -16,7 +16,9 @@
        color: white;
    }
    a{
-      padding:2em;
       text-decoration: none;
       color: white;
    }
+mat-icon{
+   padding: 0 !important;
+}

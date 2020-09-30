@@ -7,6 +7,7 @@
     height: 300px; */
     display: flex;
     flex-direction: column;
+    margin-bottom: 20vh;
   }
   
   /* Style the buttons inside the tab */
@@ -24,6 +25,7 @@
     transition: 0.3s;
     font-size: 17px;
     margin-top: 2vh;
+    
      }
   
   /* Change background color of buttons on hover */

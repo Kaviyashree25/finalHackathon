@@ -1,3 +1,7 @@
+.page{
+  background-image: url("/assets/mainBg.jpg");
+  min-height: 100vh;
+}
 .example-card {
     max-width: 400px;
     margin: 3%
@@ -13,4 +17,9 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
+  }
+  h2{
+    margin-left: 2vw;
+    padding-top: 2vh;
+    margin-top: 0;
   }

@@ -14,6 +14,7 @@ export class CircleService {
   public subject = new BehaviorSubject<Array<Circle>>(this.circles);
   public circle: Circle = new Circle();
   public circleUrl = 'http://localhost:8765/bank-circle-service/api/v1/bank/circles';
+  public url1=`http://localhost:8765/circle-service/api/v1/`;
 
   constructor(private httpClient: HttpClient, private authService: AuthServiceService) { }
 
@@ -35,5 +36,27 @@ export class CircleService {
 
   updateCircle(group: Circle) {
     return this.httpClient.put<any>(`${this.circleUrl}/${group.createdBy}/${group.circleId}`, group);
+  }
+
+  joinCircle(circle:Circle,userId:string){
+    return this.httpClient.post<any>(this.url1+`circle/${userId}`,circle);
+  }
+  leaveCircle(circle:Circle,userId:string){
+    return this.httpClient.get<any>(this.url1+`circle/${circle.circleId}/${userId}`);
+  }
+  sendReq(circle:Circle,userId:string){
+    return this.httpClient.post<any>(this.url1+`circle/SendRequest/${userId}`,circle);
+  }
+  acceptReq(circle:Circle,userId:string){
+   return this.httpClient.post<any>(this.url1+`circle/acceptRequest/${userId}`,circle);
+  }
+  rejectReq(circle:Circle,userId:string){
+    return this.httpClient.post<any>(this.url1+`circle/rejectRequest/${userId}`,circle);
+  }
+  getReq(userId){
+    return this.httpClient.get<Circle[]>(this.url1+`circleRequests/${userId}`);
+  }
+  getCirclesByUserId(userId){
+    return this.httpClient.get<Circle[]>(this.url1+`circles/${userId}`);
   }
 }

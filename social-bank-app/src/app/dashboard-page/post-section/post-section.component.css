@@ -1,0 +1,36 @@
+.example-card {
+    max-width: 400px;
+    margin: 3%
+  }
+  
+  .example-header-image {
+    background-image: url('/assets/blankdp.png');
+    background-size: cover;
+  }
+  
+  .postCard{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+img{
+    max-width: 80%;
+    height: auto;
+    margin-left: 8%;
+}
+
+h3{
+  color: red;
+  font-weight: bold;
+}
+.post-form {
+  display: flex;
+  flex-direction: column;
+}
+.page{
+  background-image: url("/assets/mainBg.jpg");
+  min-height: 100vh;
+  
+}

@@ -13,6 +13,7 @@ import { BankLoginComponent } from './forms/bank-login/bank-login.component';
 import { CircleProfileComponent } from './dashboard-page/circle-profile/circle-profile.component';
 import { CircleExploreComponent } from './dashboard-page/circle-explore/circle-explore.component';
 import { CircleUpdateComponent } from './dashboard-page/circle-update/circle-update.component';
+import { CircleRequestsComponent } from './dashboard-page/circle-requests/circle-requests.component';
 
 
 
@@ -48,6 +49,10 @@ const routes: Routes = [
       {
         path: 'products',
         component: ProductSectionComponent,
+      },
+      {
+        path: 'circleRequest',
+        component: CircleRequestsComponent,
       },
       {
         path: 'profile',

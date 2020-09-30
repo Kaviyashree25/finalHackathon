@@ -16,7 +16,7 @@ public interface CircleService {
 
 
 
-    void sendCircleRequest(Circle circle,String userId);
+    void sendCircleRequest(Circle circle,String userId) throws Exception;
     void acceptRequest(Circle circle,String userId) throws UserNotFoundException, CircleAlreadyExistsException;
     void rejectRequest(Circle circle,String userId) throws  UserNotFoundException;
 

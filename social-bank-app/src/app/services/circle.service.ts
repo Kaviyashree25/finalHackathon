@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Circle } from '../model/circle';
+import { User } from '../model/user';
 import { AuthServiceService } from './auth-service.service';
 
 @Injectable({
@@ -58,5 +59,8 @@ export class CircleService {
   }
   getCirclesByUserId(userId){
     return this.httpClient.get<Circle[]>(this.url1+`circles/${userId}`);
+  }
+  getUsersByCircleId(circleId:string){
+    return this.httpClient.get<User[]>(this.url1+`users/${circleId}`)
   }
 }

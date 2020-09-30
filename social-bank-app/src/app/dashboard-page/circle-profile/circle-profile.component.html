@@ -23,31 +23,50 @@
 
     <div id="Posts" class="tabcontent">
         <h3>Posts</h3>
+        <mat-expansion-panel class='add-post-panel'>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Post in circle
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+          
+            <div class="post-form">
+              <mat-form-field>
+                <input name="name" [(ngModel)]='post1.postTitle' matInput placeholder="Title">
+              </mat-form-field>
+          
+              <mat-form-field>
+                <textarea name="description" [(ngModel)]='post1.postContent' matInput placeholder="Content"></textarea>
+              </mat-form-field>
+          
+              <button mat-fab color="primary" class="add-button" (click)='addPost()'>Create</button>
+            </div>
+          </mat-expansion-panel>
         <p>All posts of this circle to be displayes as cards</p>
+        <div *ngFor="let post of posts" id="list">
         <mat-card class="example-card">
             <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>Shiba Inu</mat-card-title>
-                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                <mat-card-title>{{post.postTitle}}</mat-card-title>
             </mat-card-header>
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                alt="Photo of a Shiba Inu">
+            <img mat-card-image src="/assets/Post.jpeg"
+                alt="post" id="postImg">
             <mat-card-content>
                 <p>
-                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                    A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-                    bred for hunting.
+                    {{post.postContent}}
                 </p>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-button>LIKE</button>
-                <button mat-button>SHARE</button>
-            </mat-card-actions>
+                <button mat-button routerLink="/dashboard/post/update" (click)="sendPost(post)">Update</button>
+                <button mat-button (click)="deletePost(post)">Delete</button>
+              </mat-card-actions>
         </mat-card>
     </div>
-
+</div>
     <div id="Members" class="tabcontent">
         <h3>Members</h3>
-        <p>All the members of this circle to be displayed</p>
+        <div *ngFor ="let user of members">
+            <img src="/assets/blankdp.png" alt="dp" id="dp">
+            {{user.userId}}
+        </div>
     </div>
 </div>

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Circle } from 'src/app/model/circle';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { CircleService } from 'src/app/services/circle.service';
+import { CircledataService } from 'src/app/services/circledata.service';
 import { DataService } from 'src/app/services/data.service';
 import { OtherCircleServiceService } from 'src/app/services/other-circle-service.service';
 
@@ -21,7 +22,7 @@ export class CircleSectionComponent implements OnInit {
   userId: string;
   otherCircles: Circle[];
 
-  constructor(private circleService: CircleService, private authService: AuthServiceService, private dataService: DataService,private router:Router,private otherService:OtherCircleServiceService) {
+  constructor(private circleService: CircleService, private authService: AuthServiceService, private dataService: CircledataService,private router:Router,private otherService:OtherCircleServiceService) {
     this.circle = new Circle();
     this.oldCircleList = [];
     this.newCirclelist = [];

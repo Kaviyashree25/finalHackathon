@@ -67,3 +67,6 @@ input{
 .error-message{
     color: red;
 }
+form{
+  color: black;
+}

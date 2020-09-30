@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Circle } from 'src/app/model/circle';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { CircleService } from 'src/app/services/circle.service';
+import { CircledataService } from 'src/app/services/circledata.service';
 import { DataService } from 'src/app/services/data.service';
 import { OtherCircleServiceService } from 'src/app/services/other-circle-service.service';
 
@@ -20,7 +21,7 @@ export class CircleExploreComponent implements OnInit {
   circleMessage: string;
   userId: string;
   reqGroup: Circle;
-  constructor(private circleService: CircleService, private authService: AuthServiceService,private otherService:OtherCircleServiceService,private dataService:DataService) { 
+  constructor(private circleService: CircleService, private authService: AuthServiceService,private otherService:OtherCircleServiceService,private dataService:CircledataService) { 
     this.circle = new Circle();
     this.oldCircleList = [];
     this.newCircleList = [];

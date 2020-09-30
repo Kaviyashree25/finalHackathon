@@ -10,6 +10,9 @@ export class RouterService {
   routeToHome() {
     this.router.navigate(['/home']);
   }
+  routeTobankLogin(){
+    this.router.navigate([`/bankLogin`]);
+  }
 
   routeToMyGroup(){
     this.router.navigate(['/dashboard/circles'])

@@ -30,7 +30,7 @@ export class BankLoginComponent implements OnInit {
         {
           this.authService.setActiveUser(this.user.userId);
           this.authService.setBearerToken(token);
-          this.routerService.routeToDashboard();
+          this.routerService.routeTobankLogin();
         } 
         else 
         {

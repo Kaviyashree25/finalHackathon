@@ -8,8 +8,12 @@
 }
 .example-card {
     max-width: 400px;
+    justify-content: center;
 }
-  
+.mat-card{
+  display: flex;
+  justify-content: space-between;
+}
 .example-header-image {
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
     background-size: cover;
@@ -54,4 +58,20 @@ hr {
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
+  }
+  #dp{
+    max-width: 50px;
+  }
+  .post-form {
+    display: flex;
+    flex-direction: column;
+  }
+  #postImg{
+    max-width: 5vw;
+  }
+  p{
+    padding-top: 2vh;
+  }
+  #list{
+    margin-bottom: 10vh;
   }

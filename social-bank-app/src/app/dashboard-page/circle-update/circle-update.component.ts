@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Circle } from 'src/app/model/circle';
 import { CircleService } from 'src/app/services/circle.service';
+import { CircledataService } from 'src/app/services/circledata.service';
 import { DataService } from 'src/app/services/data.service';
 import { RouterService } from 'src/app/services/router.service';
 
@@ -15,7 +16,7 @@ export class CircleUpdateComponent implements OnInit {
   circleMessage: string;
   userId: string;
   circleId: string;
-  constructor(private dataService: DataService, private circleService: CircleService, private routerService: RouterService) { 
+  constructor(private dataService: CircledataService, private circleService: CircleService, private routerService: RouterService) { 
     this.circle = new Circle();
     this.dataService.shareDataSubject.subscribe(
       data => {

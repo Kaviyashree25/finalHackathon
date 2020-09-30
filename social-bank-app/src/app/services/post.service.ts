@@ -30,7 +30,9 @@ export class PostService {
     return this.httpClient.put<any>(`${this.url}/${post.userId}/${post.postId}`, post);
 
   }
-
+  getAllPostBycircleId(){
+    return this.httpClient.get<Post[]>(`http://localhost:8765/post-service/api/v1/posts`);
+  }
   getAllPostsByUserId(userId): Observable<any> {
     return this.httpClient.get<any>(`http://localhost:8765/post-service/api/v1/posts/${userId}`);
   }

@@ -54,7 +54,9 @@ export class CircleRequestsComponent implements OnInit {
         }
       },
     error=>{
-      console.error();
+      let index=this.circles.indexOf(circle);
+         this.circles.splice(index,1);
+         this.circleService.subject.next(this.circles);
       
     }
     );
@@ -69,7 +71,9 @@ export class CircleRequestsComponent implements OnInit {
         }
       },
     error=>{
-      console.error();
+      let index=this.circles.indexOf(circle);
+      this.circles.splice(index,1);
+      this.circleService.subject.next(this.circles);
       
     }
     );
